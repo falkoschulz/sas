@@ -75,12 +75,12 @@
         if (evt && evt.data) {
             var data = evt.data,
                 columns = data.meta.columns,
-                teamColumnIdx = 0, // TODO: probably better to search in columns
+                countryColumnIdx = 0, // TODO: probably better to search in columns
                 rows = csvToArrayConverter(data.results.replace("↵", "\n"), ",");
 
             if (rows && rows.length === 2) {
-                var team = rows[0][teamColumnIdx];
-                var div = $("<img src=\"images/" + team + ".gif\" class=\"pic\" alt='\"" + team + "\"'></img>");
+                var twolettercountry = rows[0][countryColumnIdx];
+                var div = $("<img src=\"http://flags.fmcdn.net/data/flags/w580/" + twolettercountry + ".png\" class=\"pic\" alt='\"" + team + "\"'></img>");
                 $("#logoContainer").append(div);
             }else{
                 $("#logoContainer").empty();
