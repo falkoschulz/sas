@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+
+    <style>
+        text {
+            font: 11pt AvenirNext;
+        }
+
+        svg {
+            display: block;
+        }
+
+        html, body, #chart_div, svg {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            width: 100%;
+        }
+
+        img {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="logoContainer" style="height:100%;width:100%; text-align:center">
+</div>
+<script>
+    var csvToArrayConverter = function (strData, strDelimiter) {
+        strDelimiter = (strDelimiter || ",");
+        var objPattern = new RegExp(
+            (
+                "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+                "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+                "([^\"\\" + strDelimiter + "\\r\\n]*))"
+            ),
+            "gi"
+        );
+        var arrData = [[]];
+        var arrMatches = null;
+        if (strData == null || strData == "")
+            return ( arrData );
+        while (arrMatches = objPattern.exec(strData)) {
+            var strMatchedDelimiter = arrMatches[1];
+            if (
+                strMatchedDelimiter.length &&
+                strMatchedDelimiter !== strDelimiter
+            ) {
+                arrData.push([]);
+            }
+
+            var strMatchedValue;
+            if (arrMatches[2]) {
+                strMatchedValue = arrMatches[2].replace(
+                    new RegExp("\"\"", "g"),
+                    "\""
+                );
+            } else {
+                strMatchedValue = arrMatches[3];
+            }
+            arrData[arrData.length - 1].push(strMatchedValue);
+        }
+        return ( arrData );
+    };
+
+    function onMessage(evt) {
+        if (evt && evt.data) {
+            var data = evt.data,
+                columns = data.meta.columns,
+                teamColumnIdx = 0, // TODO: probably better to search in columns
+                rows = csvToArrayConverter(data.results.replace("↵", "\n"), ",");
+
+            if (rows && rows.length === 2) {
+                var team = rows[0][teamColumnIdx];
+                var div = $("<img src=\"images/" + team + ".gif\" class=\"pic\" alt='\"" + team + "\"'></img>");
+                $("#logoContainer").append(div);
+            }else{
+                $("#logoContainer").empty();
+            }
+        }
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false);
+    } else {
+        window.attachEvent("onmessage", onMessage);
+    }
+</script>
+
+</body>
+</html>
