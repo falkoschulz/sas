@@ -38,7 +38,7 @@
         if (evt && evt.data && evt.data.data && evt.data.data.length === 1) {
             var rows = evt.data.data;
             var twolettercountry = rows[0][0];
-            var div = $("<img src=\"http://flags.fmcdn.net/data/flags/w580/" + twolettercountry + ".png\" class=\"pic\" alt='\"" + twolettercountry + "\"'></img>");
+            var div = $("<img src=\"http://flags.fmcdn.net/data/flags/w580/" + twolettercountry.toLowerCase() + ".png\" class=\"pic\" alt='\"" + twolettercountry + "\"'></img>");
             $("#logoContainer").append(div);
         }else{
             $("#logoContainer").empty();
