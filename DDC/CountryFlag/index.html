@@ -34,57 +34,14 @@
 <div id="logoContainer" style="height:100%;width:100%; text-align:center">
 </div>
 <script>
-    var csvToArrayConverter = function (strData, strDelimiter) {
-        strDelimiter = (strDelimiter || ",");
-        var objPattern = new RegExp(
-            (
-                "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
-                "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
-                "([^\"\\" + strDelimiter + "\\r\\n]*))"
-            ),
-            "gi"
-        );
-        var arrData = [[]];
-        var arrMatches = null;
-        if (strData == null || strData == "")
-            return ( arrData );
-        while (arrMatches = objPattern.exec(strData)) {
-            var strMatchedDelimiter = arrMatches[1];
-            if (
-                strMatchedDelimiter.length &&
-                strMatchedDelimiter !== strDelimiter
-            ) {
-                arrData.push([]);
-            }
-
-            var strMatchedValue;
-            if (arrMatches[2]) {
-                strMatchedValue = arrMatches[2].replace(
-                    new RegExp("\"\"", "g"),
-                    "\""
-                );
-            } else {
-                strMatchedValue = arrMatches[3];
-            }
-            arrData[arrData.length - 1].push(strMatchedValue);
-        }
-        return ( arrData );
-    };
-
     function onMessage(evt) {
-        if (evt && evt.data) {
-            var data = evt.data,
-                columns = data.meta.columns,
-                countryColumnIdx = 0, // TODO: probably better to search in columns
-                rows = csvToArrayConverter(data.results.replace("↵", "\n"), ",");
-
-            if (rows && rows.length === 2) {
-                var twolettercountry = rows[0][countryColumnIdx];
-                var div = $("<img src=\"http://flags.fmcdn.net/data/flags/w580/" + twolettercountry + ".png\" class=\"pic\" alt='\"" + team + "\"'></img>");
-                $("#logoContainer").append(div);
-            }else{
-                $("#logoContainer").empty();
-            }
+        if (evt && evt.data && evt.data.data && evt.data.data.length > 0) {
+            var rows = evt.data.data;
+            var twolettercountry = rows[0][0];
+            var div = $("<img src=\"http://flags.fmcdn.net/data/flags/w580/" + twolettercountry + ".png\" class=\"pic\" alt='\"" + twolettercountry + "\"'></img>");
+            $("#logoContainer").append(div);
+        }else{
+            $("#logoContainer").empty();
         }
     }
 
