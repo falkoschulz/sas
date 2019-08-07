@@ -1,0 +1,46 @@
+{
+  "images": [
+    {
+      "title": "U.S. Flight Delays",
+      "image": "images/va_us_flight_delays_infographic_v3_noframe.png",
+      "data": "file://rdcx200/vaperf/Data/ESRI/FlightDelays",
+      "source": "http://www.transportation.gov",
+      "description": "This SAS Visual Analytics report example shows flight cancellations and delays in the United States. Analysis shows affected airline routes and days of the week. The main geographical view shows the risk of cancellation for U.S. airport hubs."
+    },
+    {
+      "title": "SciSports - Measuring soccer player performance - FIFA WC18",
+      "image": "images/va_scisports_performance.png",
+      "data": "file://rdcx200/vaperf/Data/geo/SciSports",
+      "source": "http://www.scisports.com",
+      "description": "This SAS Visual Analytics report example shows player performance during a soccer game. A network visualization is used to show if players have played against each other before. The player positions during the game help to analyse performance and one can detect patterns of goal or missed opportunities."
+    },
+    {
+      "title": "Himalaya - Expeditions Death Statistics",
+      "image": "images/va_himalaya_expeditions.png",
+      "data": "file://rdcx200/vaperf/Data/geo/Himalaya",
+      "source": "http://www.himalayandatabase.com/downloads.html",
+      "description": "The Himalayan range has many of the Earth's highest peaks, including the highest, Mt Everest. This SAS Visual Analytics report shows data about different expeditions and related death statistics. Analysis shows deadliest routes, reason for detahs and overall success rates. A 3D visualization of the two most popular routes shows the extreme conditions one has to climb to reach the top."
+    },
+    {
+      "title": "City of Melbourne - Pedestrian Counting System",
+      "image": "images/va_vic_melbourne_pedestrians.png",
+      "data": "file://rdcx200/vaperf/data/geo/VIC_Pedestrian_Traffic",
+      "source": "http://www.pedestrian.melbourne.vic.gov.au",
+      "description": "The City of Melbourne has automated pedestrian counting sensors located across the city. These sensors provide pedestrian counts for the previous hour at the given location. This SAS Visual Analytics report example shows the location of the sensors and the hourly and monthly pedestrian account. Selecting a sensor shows related a street view for the location."
+    },
+    {
+      "title": "Chicago Crime Scene Investigator",
+      "image": "images/chicago_crime_scenes_2018_landscape.png",
+      "data": "file://bivr510a.na.sas.com/Data/ChicagoCrimes",
+      "source": "http://data.cityofchicago.org",
+      "description": "Crime in Chicago has been tracked by the Chicago Police Department's Bureau of Records since the beginning of the 20th century. This SAS Visual Analytics report example shows crime data across the city by location and offence type. A geographical map shows crime hotspots."
+    },
+    {
+      "title": "Wildfires - Forest fires in the US 1992-2015",
+      "image": "images/va_us_wildfires.png",
+      "data": "file://rdcx200/vaperf/Data/geo/USWildFires",
+      "source": "https://www.fs.usda.gov/rds/archive/Product/RDS-2013-0009.4/",
+      "description": "This SAS Visual Analytics report example uses data from the Forest Service Research group at the United States Department of Agriculture. It shows wildfire occurrences across the United States from 1992 to 2015. Collected from records from federal, state, and local fire organizations - we can see distribution of fire hotspots across the states."
+    }
+  ]
+}

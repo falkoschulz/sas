@@ -1,0 +1,278 @@
+body, h1, h2, h3, p, quote, small, form, input, ul, li, ol, label, fieldset {
+    /* A simple page reset */
+    margin: 0px;
+    padding: 0px;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    color: white;
+    font-size: 13px;
+    /*background: #009397;*/
+    background: #1F344C url(img/color-pop-teal-blue.jpg) no-repeat;
+    background-position-x: center;
+    background-size: cover;
+    font-family: 'Geogrotesque-Light', 'Lekton', 'Droid Sans Mono', arial, serif;
+    overflow: hidden;
+}
+
+.copyright {
+    font-size: 10px;
+    position: absolute;
+    bottom: 0px;
+    right: 9px;
+}
+
+#gallery {
+    /* The pics container */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.playbutton {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.searchField, .searchField:focus, .searchField:active {
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #404040;
+    color: white;
+    border-width: 1px;
+    outline: 0;
+}
+
+.pic.portrait {
+    width: 250px;
+    height: 500px;
+}
+
+.pic, .pic a {
+    /* Each picture and the hyperlink inside it */
+    width: 500px;
+    height: 250px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.pic {
+    /* Styles specific to the pic class */
+    position: absolute;
+    border: 5px solid #EEEEEE;
+    border-bottom: 18px solid #eeeeee;
+
+    /* CSS3 Box Shadow */
+    -moz-box-shadow: 2px 2px 3px #333333;
+    -webkit-box-shadow: 2px 2px 3px #333333;
+    box-shadow: 2px 2px 3px #333333;
+}
+
+.galleryImageDescription {
+    width: 250px;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+}
+
+.pic a {
+    /* Specific styles for the hyperlinks */
+    text-indent: -999px;
+    display: block;
+    /* Setting display to block enables advanced styling for links */
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.show-me {
+    opacity: 1;
+}
+
+.drop-box {
+    /* The share box */
+    width: 240px;
+    height: 130px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+
+    background: url(img/drop_box.png) no-repeat;
+}
+
+.drop-box.active {
+    /* The active style is in effect when there is a pic hovering above the box */
+    background-position: bottom left;
+}
+
+label, input {
+    /* The modal dialog URL field */
+    display: block;
+    padding: 3px;
+}
+
+label {
+    font-size: 10px;
+}
+
+fieldset {
+    border: 0;
+    margin-top: 10px;
+}
+
+#url {
+    /* The URL field */
+    width: 240px;
+}
+
+/* General styles for the demo page */
+
+h1 {
+    /* The title of the page */
+    color: white;
+    font-family: "MyRiad Pro", Arial, Helvetica, sans-serif;
+    font-size: 38px;
+    font-weight: normal;
+}
+
+h2 {
+    /* The subtitle */
+    font-family: "MyRiad Pro", "Arial Narrow", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    padding-left: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 10px 0 25px;
+}
+
+#fancybox-title {
+    font-size: 16px !important;
+}
+
+#orig {
+    /* The link that is positioned above the title */
+    font-family: "MyRiad Pro", Arial;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding-bottom: 15px;
+    text-transform: uppercase;
+    float: right;
+}
+
+hr {
+    /* The horizontal ruler */
+    background-color: #BBBBBB;
+    border: medium none;
+    color: #BBBBBB;
+    height: 1px;
+    margin: 30px auto;
+    width: 450px;
+}
+
+.clear {
+    /* The clearfix hack */
+    clear: both;
+}
+
+#main {
+    /* The main container */
+    width: 100%;
+    height: 100%;
+}
+
+a img {
+    border: none;
+}
+
+a, a:visited {
+    color: #aaa;
+    text-decoration: none;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.tutorial-info {
+    text-align: center;
+    padding: 10px;
+    margin-top: 70px;
+}
+
+/* carousel */
+/*jssor slider loading skin spin css*/
+.jssorl-009-spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes jssorl-009-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/*jssor slider bullet skin 057 css*/
+.jssorl-009-spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes jssorl-009-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/*jssor slider arrow skin 106 css*/
+.jssora106 {display:block;position:absolute;cursor:pointer;}
+.jssora106 .c {fill:#fff;opacity:.3;}
+.jssora106 .a {fill:none;stroke:#000;stroke-width:350;stroke-miterlimit:10;}
+.jssora106:hover .c {opacity:.5;}
+.jssora106:hover .a {opacity:.8;}
+.jssora106.jssora106dn .c {opacity:.2;}
+.jssora106.jssora106dn .a {opacity:1;}
+.jssora106.jssora106ds {opacity:.3;pointer-events:none;}
+
+/*jssor slider thumbnail skin 101 css*/
+.jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;}
+.jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
+.jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
+.jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
+.jssort101 .p:hover{padding:2px;}
+.jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
+.jssort101 .p:hover.pdn{padding:0;}
+.jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
+.jssort101 .pav .cv {border-color:#fff;opacity:.35;}
+.jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
+.jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
+.jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
