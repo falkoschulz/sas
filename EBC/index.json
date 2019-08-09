@@ -41,6 +41,14 @@
       "data": "file://rdcx200/vaperf/Data/geo/USWildFires",
       "source": "https://www.fs.usda.gov/rds/archive/Product/RDS-2013-0009.4/",
       "description": "This SAS Visual Analytics report example uses data from the Forest Service Research group at the United States Department of Agriculture. It shows wildfire occurrences across the United States from 1992 to 2015. Collected from records from federal, state, and local fire organizations - we can see distribution of fire hotspots across the states."
+    },
+    {
+      "title": "Anti-Fraud Technology Benchmarking Report",
+      "image": "images/va83_anti_fraud_technology_benchmarking_report_v2.png",
+      "data": "file://rdcx200/vaperf/Data/misc/FraudSurveyResults",
+      "source": "https://www.acfe.com",
+      "orientation": "portrait",
+      "description": "This SAS Visual Analytics report example uses data from the Association of Certified Fraud Examiners and highlights key findings from a survey report about anti-fraud technology use in organizations."
     }
   ]
 }
