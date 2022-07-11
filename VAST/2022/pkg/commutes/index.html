@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src='https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js'></script>
+    <!--
+    Uncomment the stylesheet link below to access the fonts in the SAS Viya deployment.
+       Risk: This change requires a live connection to SAS Viya.
+       Reward: This change enables access to the fonts that were used to design the report.
+    <link rel='stylesheet' type='text/css' href='css/viyafonts.css' />
+    -->
+    <style>
+      body {margin: 0px; padding: 0px;}
+      sas-report,
+      sas-report-page,
+      sas-report-object {width: 100vw; height: 100vh;}
+    </style>
+  </head>
+  <body>
+    <!-- Q2-1 City Areas -->
+    <sas-report-page packageUri='.' pageName='vi754' ></sas-report-page>
+    <!-- Q2-2 City Areas at 4PM -->
+    <sas-report-page packageUri='.' pageName='vi4369' ></sas-report-page>
+  </body>
+</html>

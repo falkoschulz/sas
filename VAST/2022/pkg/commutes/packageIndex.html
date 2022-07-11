@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script async src='https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js'></script>
+    <!--
+    Uncomment the stylesheet link below to access the fonts in the SAS Viya deployment.
+       Risk: This change requires a live connection to SAS Viya.
+       Reward: This change enables access to the fonts that were used to design the report.
+    <link rel='stylesheet' type='text/css' href='css/viyafonts.css' />
+    -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter');
+      @import url('https://fonts.googleapis.com/css2?family=Consolas');
+      @import url('https://fonts.googleapis.com/css2?family=Roboto');
+      @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+      body {
+        padding: 0 2rem 0 2rem;
+        background-color: #ffffff;
+      }
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        font-family: Inter;
+        margin: 8px 0px;
+      }
+      h2 {
+        font-size: 1.246rem;
+        font-weight: 400;
+        font-family: Inter;
+        margin: 4px 0px;
+      }
+      h3 {
+        font-size: .984rem;
+        font-weight: 400;
+        font-family: Inter;
+        margin: 2px 0px;
+      }
+      h4 {
+        font-size: 0.75rem;
+        font-weight: 400;
+        font-family: Inter;
+        margin: 2px 0px;
+      }
+      hr {
+        border-top: 1px solid #CED2D9;        width:100%;
+        text-align:left;
+        margin-left: 0
+      }
+      .container {
+        display: flex;
+        align-items: stretch;
+        background-color: #ffffff;
+        height: 30rem;
+        margin: 2rem 0 2rem 0;
+      }
+      .flex-report {
+        width: 100%;
+        height: 30rem;
+        margin-right: 1rem;
+      }
+      .flex-report sas-report {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .flex-code  {
+        background-color: #f0f1f4;
+        width: 100%;
+        height: 15rem;
+        margin-left: 1rem; 
+        text-align: left;
+        flex: 0 0 350px;
+      }
+      .code-bar {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #FFFFFF;
+      }
+      .code-snippet {
+        font-size: 1rem;
+        font-weight: 900;
+        font-family: Inter;
+        float: left;
+        display: block;
+        color: black;
+        text-align: left;
+        padding: 0 0 0 0;
+        text-decoration: none;
+      }
+      .code-btn {
+        float: right;
+        display: block;
+        color: black;
+        text-align: left;
+        padding: 0 0 0 0;
+        text-decoration: none;
+      }
+      .code {
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: Consolas;
+      }
+      .code-green {
+        color: #26883e;
+      }
+      .code-blue {
+        color: #001aff;
+      }
+      .code-brown {
+        color: #7a641c;;
+      }
+      .copy {
+        background: #ffffff;
+        border: none; 
+      }
+      .material-icons {
+        font-family: 'Material Icons';
+        font-size: 16px;
+        padding: 0 0 0 0;
+        cursor: pointer;
+      }
+      ul {
+        font-size: .984rem;
+        font-weight: 400;
+        font-family: Inter;
+        margin: 2px 0px;
+        list-style-type: disc;
+      }
+      a {
+        text-decoration: none;
+      }
+      sas-report,
+      sas-report-page {height: 30rem;}
+      sas-report-object {height: 30rem;}
+    </style>
+  </head>
+  <body>
+    <h1>Travel route network and analysis (Falko)</h1>
+    <h2>exported from SAS&reg;Visual Analytics</h2>
+    <br>
+    <h3>2 page(s) exported from the report Travel route network and analysis (Falko) on July 11, 2022 at 22:44 PM UTC</h3>
+    <h4>This page contains the exported contents and the code to reference in order to customize your webpage. See the <a target='_blank' href='https://github.com/sassoftware/visual-analytics-sdk/tree/master/examples'>examples</a> on GitHub</h4>
+    <br>
+    <ul>
+      <li><a href="#link0">Q2-1 City Areas</a></li>
+      <li><a href="#link1">Q2-2 City Areas at 4PM</a></li>
+    </ul> 
+    <hr/>
+    <a id='link0'><h3>Q2-1 City Areas</h3></a>
+    <div class='container'>
+      <div class='flex-report'>
+        <!-- Q2-1 City Areas -->
+        <sas-report-page packageUri='.' pageName='vi754' ></sas-report-page>
+      </div>
+      <div class='flex-code'>
+        <section>
+          <ul class='code-bar'>
+            <li class='code-snippet'>Code Snippet</li>
+            <li class='code-btn'><button id='copy0' class='copy'><i class='material-icons'>content_copy</i></button></li>
+          </ul>
+          <p id='code0' class='code'>
+            <span class='code-green'>&lt;!--Q2-1 City Areas--&gt</span><br><br>&lt;<span class='code-blue'>sas-report-page </span><span class='code-brown'>packageUri</span>=<span class='code-green'>'.' </span><span class='code-brown'>pageName</span>=<span class='code-green'>'vi754'</span>&gt;&lt;/<span class='code-blue'>sas-report-page</span>&gt;
+          </p>
+        </section>
+      </div>
+    </div>
+    <hr/>
+    <a id='link1'><h3>Q2-2 City Areas at 4PM</h3></a>
+    <div class='container'>
+      <div class='flex-report'>
+        <!-- Q2-2 City Areas at 4PM -->
+        <sas-report-page packageUri='.' pageName='vi4369' ></sas-report-page>
+      </div>
+      <div class='flex-code'>
+        <section>
+          <ul class='code-bar'>
+            <li class='code-snippet'>Code Snippet</li>
+            <li class='code-btn'><button id='copy1' class='copy'><i class='material-icons'>content_copy</i></button></li>
+          </ul>
+          <p id='code1' class='code'>
+            <span class='code-green'>&lt;!--Q2-2 City Areas at 4PM--&gt</span><br><br>&lt;<span class='code-blue'>sas-report-page </span><span class='code-brown'>packageUri</span>=<span class='code-green'>'.' </span><span class='code-brown'>pageName</span>=<span class='code-green'>'vi4369'</span>&gt;&lt;/<span class='code-blue'>sas-report-page</span>&gt;
+          </p>
+        </section>
+      </div>
+    </div>
+    <hr>
+    <h3>Powered by SAS&reg;Viya&reg;</h3>
+    <script>
+      function copy(id) {
+        var code = document.getElementById(id)
+        navigator.clipboard.writeText(code.innerText)
+      }
+      for(let i = 0; i < 2; i++) {
+        document.getElementById('copy' + i).addEventListener('click', function(){ copy('code' + i); });
+      }
+    </script>
+  </body>
+</html>
