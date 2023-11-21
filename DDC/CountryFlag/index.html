@@ -10,9 +10,7 @@
       }
 
       html,
-      body,
-      #chart_div,
-      svg {
+      body {
         margin: 0px;
         padding: 0px;
         height: 100%;
@@ -20,37 +18,146 @@
       }
 
       img {
-        position: absolute;
-        margin: auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        width: auto;
+      }
+
+      .imgContainer {
         height: 100%;
         width: 100%;
+        text-align: center;
+        overflow: hidden;
+      }
+
+      .pic {
+        border: none;
+      }
+
+      .picBorder {
+        border: 1px solid black;
       }
     </style>
   </head>
   <body>
-    <div
-      id="logoContainer"
-      style="height: 100%; width: 100%; text-align: center"
-    ></div>
+    <div id="mainContainer" class="imgContainer"></div>
     <script>
-      function onMessage(evt) {
-        $("#logoContainer").empty();
+      const OPTION_BASE_PATH = "basePath";
+      const OPTION_IMAGE_EXT = "imageExtension";
+      const OPTION_SHOW_BORDER = "showBorder";
 
+      function getOptionsFromUrl() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+          basePath: urlParams.get(OPTION_BASE_PATH) || "images",
+          imageExtension: urlParams.get(OPTION_IMAGE_EXT) || "png",
+          showBorder: urlParams.get(OPTION_SHOW_BORDER) === "true",
+        };
+      }
+
+      function onMessage(evt) {
+        populateOptionsPane(event.data.resultName);
+
+        $("#mainContainer").empty();
+
+        const options = getOptionsFromUrl();
         if (evt && evt.data && evt.data.data && evt.data.data.length === 1) {
-          var rows = evt.data.data;
-          var twolettercountry = rows[0][0];
-          var div = $(
-            '<img src="images/' +
-              twolettercountry.toLowerCase() +
-              '.png" class="pic" alt=\'"' +
-              twolettercountry +
-              "\"'></img>"
+          const rows = evt.data.data;
+          const twolettercountry = rows[0][0];
+          const div = $(
+            `<img src="${options.basePath}/${twolettercountry
+              .toLowerCase()
+              .trim()}.${options.imageExtension}" class="${
+              options.showBorder ? "picBorder" : "pic"
+            }" alt="${twolettercountry}"></img>`
           );
-          $("#logoContainer").append(div);
+          $("#mainContainer").append(div);
+        }
+      }
+
+      function populateOptionsPane(resultName) {
+        const message = {
+          resultName,
+          optionsConfig: {
+            label: "Image Renderer Options",
+            version: 1,
+            urlOption: true, // set to {true} if options are to be populated as URL parameters
+            groups: [
+              {
+                label: "General",
+                fields: [
+                  {
+                    name: OPTION_BASE_PATH,
+                    label: "Image Path:",
+                    value: "images",
+                    tooltip:
+                      "The full or relative path to the images (without the ending forward slash)",
+                    type: "String",
+                  },
+                  {
+                    name: OPTION_IMAGE_EXT,
+                    label: "Image Extension:",
+                    tooltip: "The extension of the images. Defaults to PNG.",
+                    value: "png",
+                    dataProvider: [
+                      {
+                        key: "png",
+                        text: "PNG",
+                      },
+                      {
+                        key: "jpg",
+                        text: "JPG",
+                      },
+                      {
+                        key: "gif",
+                        text: "GIF",
+                      },
+                    ],
+                  },
+                  {
+                    name: OPTION_SHOW_BORDER,
+                    label: "Show border",
+                    tooltip: "Displays the image with a border",
+                    type: "Boolean",
+                    value: false,
+                  },
+                ],
+              },
+              {
+                label: "Advanced Options",
+                fields: [
+                  {
+                    name: "numOption",
+                    label: "Sample Numeric Option:",
+                    tooltip: "tooltip....",
+                    type: "Number",
+                  },
+
+                  {
+                    name: "intOption",
+                    label: "Sample Interger Option",
+                    tooltip: "tooltip....",
+                    type: "Integer",
+                    placeholder: "Number from 0",
+                    constraints: {
+                      min: 0,
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        };
+
+        sendMessage(message);
+      }
+
+      function sendMessage(message) {
+        const target = window.parent || window;
+        const targetOrigin = "*";
+        if (target) {
+          target.postMessage(message, targetOrigin);
         }
       }
 
