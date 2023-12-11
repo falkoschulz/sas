@@ -1,9 +1,0 @@
-Age Groups by Bias
-  Interactivity for this object is limited for the following reasons:
-    * The data to support actions could not be retrieved. Time out exceeded.
-  These reasons might only be a problem because of these data complexities:
-    * This object type requires an advanced query.
-
-Offence Category
-  The data is not available. The data for this object could not be retrieved.
-    * Timeout exceeded - query could not be processed.
