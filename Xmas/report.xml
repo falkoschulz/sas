@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.34.0" label="XMAS Tree" implicitInteractions="reportPrompt sectionPrompt sectionLink" createdLocale="en_US" createdVersion="4.34.0" dateCreated="2023-12-20T04:37:32Z" dateModified="2023-12-20T23:24:50Z" createdApplication="SAS Visual Analytics 2020" lastModifiedApplication="SAS Visual Analytics 2020" nextUniqueNameIndex="149">
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.34.0" label="XMAS Tree" implicitInteractions="reportPrompt sectionPrompt sectionLink" createdLocale="en_US" createdVersion="4.34.0" dateCreated="2023-12-20T04:37:32Z" dateModified="2023-12-21T01:24:21Z" createdApplication="SAS Visual Analytics 2020" lastModifiedApplication="SAS Visual Analytics 2020" nextUniqueNameIndex="149">
 	<Results>
-		<Result ref="dd143" type="relational" status="success" dataLevel="baseline" label="Results" dataLocale="en_US" consumerDataModel="aggregated" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-20T23:32:13.440Z">
+		<Result ref="dd143" type="relational" status="success" dataLevel="baseline" label="Results" dataLocale="en_US" consumerDataModel="aggregated" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
 			<Variables>
 				<StringVariable label="HappyHolidayMessage" ref="bi146" varname="bi146" column="c0"/>
 				<NumericVariable format="COMMA12." usage="quantitative" definedAggregation="average" label="May your data be merry and bright." ref="bi148" varname="bi148" column="c1"/>
@@ -16,7 +16,7 @@
 			<Data isIndexed="false" availableRowCount="1" contentKey="LAI3MYWTB54SR4RFK46G6H7OZYGHN2HB" size="47" format="CSV" rowCount="1" grandTotal="false" dataLayout="minimal"><![CDATA["Happy holidays from your friends at SAS.",1.0
 ]]></Data>
 		</Result>
-		<Result ref="dd18" type="relational" status="success" dataLevel="baseline" label="Coordinate" dataLocale="en_US" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-20T23:32:13.440Z">
+		<Result ref="dd18" type="relational" status="success" dataLevel="baseline" label="Coordinate" dataLocale="en_US" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
 			<Variables>
 				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi41" varname="bi41" column="c0"/>
 				<NumericVariable format="BEST." usage="categorical" coordinateSpace="WGS84" label="y" ref="bi29" varname="bi29" column="c1"/>
@@ -45,7 +45,7 @@
 				<NumericColumn dataType="double" colname="c10" encoding="text"/>
 				<NumericColumn dataType="double" colname="c11" encoding="text"/>
 			</Columns>
-			<DataFile contentKey="C5NEIH7EABZPBEJQV34VUPQ33IUNK7QF" size="341720" format="CSV" rowCount="5610" grandTotal="false" dataLayout="minimal" file="dd18.csv" isIndexed="false" availableRowCount="5610"/>
+			<DataFile contentKey="XWDF3ZK47RGBIEEJRXAEPAXJ5I3VIYBS" size="335926" format="CSV" rowCount="5508" grandTotal="false" dataLayout="minimal" file="dd18.csv" isIndexed="false" availableRowCount="5508"/>
 		</Result>
 	</Results>
 	<DataDefinitions>
@@ -129,7 +129,6 @@
 		<DataSource label="XMAS" type="relational" name="ds7">
 			<CasResource server="cas-shared-default" library="CASUSER" table="XMAS" locale="en_US"/>
 			<BusinessItemFolder>
-				<DataItem name="bi8" xref="color"/>
 				<DataItem name="bi9" xref="id" usage="categorical">
 					<GeoInfo geoType="column" coordinateSpace="WGS84">
 						<Lookup property="latitude" ref="bi11"/>
@@ -140,7 +139,6 @@
 				<DataItem name="bi11" xref="y"/>
 				<PredefinedDataItem calculation="totalCount" name="bi12" label="Frequency" usage="quantitative" format="COMMA12."/>
 				<PredefinedDataItem calculation="totalCountPercent" name="bi13" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
-				<DataItem name="bi52" xref="offset"/>
 				<DataItem name="bi66" xref="date"/>
 				<DataItem name="bi67" xref="year"/>
 				<DataItem name="bi73" xref="color_num"/>
@@ -240,9 +238,8 @@
             </GraphNames>
         </AutoLegend>
     </LayoutGlobalLegend>
-    <Animation keyframesPerSecond="1" playDirectionForward="true" repeatEnabled="true" keyFrame="dd18#bi69"/>
-</StatGraph>
-]]>
+    <Animation keyframesPerSecond="5" playDirectionForward="true" repeatEnabled="true" keyFrame="dd18#bi69"/>
+</StatGraph>]]>
 		</Graph>
 		<Table columnSizing="autoFill" resultDefinitions="dd18" name="ve43" data="dd16" applyDynamicBrushes="yes">
 			<Columns>
@@ -295,9 +292,7 @@
 				<Property key="previousShowAggregation">false</Property>
 			</EditorProperties>
 <![CDATA[<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
-    <Dimension/>
     <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
-    <Dimension/>
     <Meta>
         <DynVars>
             <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="numeric" type="numeric">
@@ -329,8 +324,7 @@
             </KeyValue>
         </LayoutPrototypeRegion>
     </LayoutDataPanel>
-</StatGraph>
-]]>
+</StatGraph>]]>
 		</Graph>
 		<Table columnSizing="autoFill" resultDefinitions="dd143" name="ve144" data="dd141" applyDynamicBrushes="yes" sourceInteractionVariables="bi146">
 			<Columns>
@@ -608,7 +602,7 @@
 	</Conversions>
 	<Editors>
 		<Editor applicationName="VA">
-			<Revision editorVersion="2023.10" lastDate="2023-12-20T23:24:50.821Z"/>
+			<Revision editorVersion="2023.10" lastDate="2023-12-21T01:24:21.877Z"/>
 		</Editor>
 	</Editors>
 </History>
