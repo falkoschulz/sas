@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadataSupplement>
+    <tables>
+        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','CASUSER','XMAS','en_US'" tableModifiedTimeStamp="2023-12-20T23:32:13.440Z">
+            <columns>
+                <column dataType="date" format="YEAR4" label="date" xref="date"/>
+                <column dataType="double" format="BEST12." label="x" xref="x"/>
+                <column dataType="double" format="BEST12." label="y" xref="y"/>
+                <column dataType="double" format="BEST12." label="color_num" xref="color_num"/>
+                <column dataType="string" label="color" xref="color"/>
+                <column dataType="double" format="BEST12." label="id" xref="id"/>
+                <column dataType="double" format="BEST12." label="year" xref="year"/>
+                <column dataType="double" format="BEST12." label="size" xref="size"/>
+            </columns>
+        </table>
+    </tables>
+    <version>2</version>
+</metadataSupplement>
