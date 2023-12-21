@@ -1,19 +1,35 @@
-
-
+#cd206 .If {
+  color: #b0e8d3;
+}
+#cd196 .If {
+  color: #2ab969;
+}
+#cd198 .If {
+  color: #7af3b0;
+}
+#ve161 .ReportElementContainer {
+  padding: 0px;
+}
+.Report {
+  background-color: #022954;
+}
 #cd90 .If {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 #cd84 .If {
-  color: #2AB969;
+  color: #2ab969;
 }
 #ve15 .GraphSkin {
   data-skin: FLAT;
 }
 #cd129 .If {
-  color: #B0E8D3;
+  color: #b0e8d3;
+}
+#cd200 .If {
+  color: #dc137d;
 }
 #cd82 .If {
-  color: #7AF3B0;
+  color: #7af3b0;
 }
 #ve101 .ReportElementContainer {
   padding: 0px;
@@ -21,17 +37,27 @@
 #vi6 .ReportPagePadding {
   padding: 0px;
 }
-#cd86 .If {
-  color: #DC137D;
+#ve208 .ReportElementContainer {
+  padding: 0px;
 }
-.Report {
-  background-color: #022954;
+#cd86 .If {
+  color: #dc137d;
+}
+#vi212 .ReportPagePadding {
+  padding: 0px;
 }
 #cd88 .If {
-  color: #0766D0;
+  color: #0766d0;
+}
+#cd202 .If {
+  color: #0766d0;
 }
 #ve15 .ReportElementContainer {
   padding: 0px;
 }
-
-			
+#cd204 .If {
+  color: #ffffff;
+}
+#ve208 .GraphSkin {
+  data-skin: FLAT;
+}

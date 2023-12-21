@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.34.0" label="XMAS Tree" implicitInteractions="reportPrompt sectionPrompt sectionLink" createdLocale="en_US" createdVersion="4.34.0" dateCreated="2023-12-20T04:37:32Z" dateModified="2023-12-21T01:24:21Z" createdApplication="SAS Visual Analytics 2020" lastModifiedApplication="SAS Visual Analytics 2020" nextUniqueNameIndex="149">
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.34.0" label="XMAS Tree" implicitInteractions="reportPrompt sectionPrompt sectionLink" createdLocale="en_US" createdVersion="4.34.0" dateCreated="2023-12-20T04:37:32Z" dateModified="2023-12-21T01:41:41Z" createdApplication="SAS Visual Analytics 2020" lastModifiedApplication="SAS Visual Analytics 2020" nextUniqueNameIndex="222">
 	<Results>
-		<Result ref="dd143" type="relational" status="success" dataLevel="baseline" label="Results" dataLocale="en_US" consumerDataModel="aggregated" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
+		<Result ref="dd190" type="relational" status="success" dataLevel="baseline" label="Coordinate" dataLocale="en_US" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
 			<Variables>
-				<StringVariable label="HappyHolidayMessage" ref="bi146" varname="bi146" column="c0"/>
-				<NumericVariable format="COMMA12." usage="quantitative" definedAggregation="average" label="May your data be merry and bright." ref="bi148" varname="bi148" column="c1"/>
-			</Variables>
-			<Columns>
-				<StringColumn maxLength="42" colname="c0" encoding="text"/>
-				<NumericColumn dataType="double" colname="c1" encoding="text"/>
-			</Columns>
-			<DefinedColumnSortItems>
-				<DefinedMeasureSortItem variable="bi148" sortDirection="descending"/>
-			</DefinedColumnSortItems>
-			<Data isIndexed="false" availableRowCount="1" contentKey="LAI3MYWTB54SR4RFK46G6H7OZYGHN2HB" size="47" format="CSV" rowCount="1" grandTotal="false" dataLayout="minimal"><![CDATA["Happy holidays from your friends at SAS.",1.0
-]]></Data>
-		</Result>
-		<Result ref="dd18" type="relational" status="success" dataLevel="baseline" label="Coordinate" dataLocale="en_US" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
-			<Variables>
-				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi41" varname="bi41" column="c0"/>
-				<NumericVariable format="BEST." usage="categorical" coordinateSpace="WGS84" label="y" ref="bi29" varname="bi29" column="c1"/>
-				<NumericVariable format="BEST." usage="categorical" coordinateSpace="WGS84" label="x" ref="bi28" varname="bi28" column="c2"/>
-				<NumericVariable format="BEST12." usage="quantitative" label="size" ref="bi126" varname="bi126" column="c3"/>
-				<NumericVariable format="BEST12." usage="quantitative" label="color_num" ref="bi75" varname="bi75" column="c4"/>
-				<NumericVariable format="YEAR4" usage="categorical" label="date" ref="bi69" varname="bi69" column="c5"/>
-				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi33" varname="bi33" column="c6"/>
-				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi42" varname="bi42" column="c7"/>
-				<NumericVariable format="BEST12." usage="quantitative" label="color_num" ref="bi76" varname="bi76" column="c8"/>
-				<NumericVariable format="BEST12." usage="categorical" label="x" ref="bi115" varname="bi115" column="c9"/>
-				<NumericVariable format="BEST12." usage="categorical" label="y" ref="bi117" varname="bi117" column="c10"/>
-				<NumericVariable format="BEST12." usage="quantitative" label="size" ref="bi127" varname="bi127" column="c11"/>
+				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi178" varname="bi178" column="c0"/>
+				<NumericVariable format="BEST." usage="categorical" coordinateSpace="WGS84" label="y" ref="bi188" varname="bi188" column="c1"/>
+				<NumericVariable format="BEST." usage="categorical" coordinateSpace="WGS84" label="x" ref="bi187" varname="bi187" column="c2"/>
+				<NumericVariable format="BEST12." usage="quantitative" label="size" ref="bi179" varname="bi179" column="c3"/>
+				<NumericVariable format="BEST12." usage="quantitative" label="color_num" ref="bi186" varname="bi186" column="c4"/>
+				<NumericVariable format="YEAR4" usage="categorical" label="date" ref="bi180" varname="bi180" column="c5"/>
+				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi189" varname="bi189" column="c6"/>
+				<NumericVariable format="BEST12." usage="categorical" label="id" ref="bi181" varname="bi181" column="c7"/>
+				<NumericVariable format="BEST12." usage="quantitative" label="color_num" ref="bi182" varname="bi182" column="c8"/>
+				<NumericVariable format="BEST12." usage="categorical" label="x" ref="bi183" varname="bi183" column="c9"/>
+				<NumericVariable format="BEST12." usage="categorical" label="y" ref="bi184" varname="bi184" column="c10"/>
+				<NumericVariable format="BEST12." usage="quantitative" label="size" ref="bi185" varname="bi185" column="c11"/>
 			</Variables>
 			<Columns>
 				<NumericColumn dataType="double" colname="c0" encoding="text"/>
@@ -45,7 +30,22 @@
 				<NumericColumn dataType="double" colname="c10" encoding="text"/>
 				<NumericColumn dataType="double" colname="c11" encoding="text"/>
 			</Columns>
-			<DataFile contentKey="XWDF3ZK47RGBIEEJRXAEPAXJ5I3VIYBS" size="335926" format="CSV" rowCount="5508" grandTotal="false" dataLayout="minimal" file="dd18.csv" isIndexed="false" availableRowCount="5508"/>
+			<DataFile contentKey="XWDF3ZK47RGBIEEJRXAEPAXJ5I3VIYBS" size="335926" format="CSV" rowCount="5508" grandTotal="false" dataLayout="minimal" file="dd190.csv" isIndexed="false" availableRowCount="5508"/>
+		</Result>
+		<Result ref="dd151" type="relational" status="success" dataLevel="baseline" label="Results" dataLocale="en_US" consumerDataModel="aggregated" supportsExportDetail="true" supportsCustomQuery="true" sortLocale="en_US" tableDateModified="2023-12-21T01:23:45.461Z">
+			<Variables>
+				<StringVariable label="HappyHolidayMessage" ref="bi152" varname="bi152" column="c0"/>
+				<NumericVariable format="COMMA12." usage="quantitative" definedAggregation="average" label="May your data be merry and bright" ref="bi153" varname="bi153" column="c1"/>
+			</Variables>
+			<Columns>
+				<StringColumn maxLength="42" colname="c0" encoding="text"/>
+				<NumericColumn dataType="double" colname="c1" encoding="text"/>
+			</Columns>
+			<DefinedColumnSortItems>
+				<DefinedMeasureSortItem variable="bi153" sortDirection="descending"/>
+			</DefinedColumnSortItems>
+			<Data isIndexed="false" availableRowCount="1" contentKey="LAI3MYWTB54SR4RFK46G6H7OZYGHN2HB" size="47" format="CSV" rowCount="1" grandTotal="false" dataLayout="minimal"><![CDATA["Happy holidays from your friends at SAS",1.0
+]]></Data>
 		</Result>
 	</Results>
 	<DataDefinitions>
@@ -124,6 +124,81 @@
 				</ResultDefinitions>
 			</DataDefinition>
 		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds7" name="dd154">
+			<BusinessItems>
+				<RelationalDataItem name="bi152" base="bi138"/>
+				<RelationalDataItem name="bi153" base="bi147"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds7" type="multidimensional" name="dd155">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi152"/>
+						</Axis>
+						<Axis type="row">
+							<BusinessItem ref="bi153"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi153" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="keyValue" maxRowsBehavior="truncate" name="dd151"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds7" name="dd191">
+			<BusinessItems>
+				<SyntheticItems name="si177">
+					<Item purpose="geoItem" root="bi169" name="bi178"/>
+					<Item purpose="size" root="bi170" name="bi179"/>
+					<Item purpose="animation" root="bi171" name="bi180"/>
+					<Item purpose="dataTip" root="bi169" name="bi181"/>
+					<Item purpose="dataTip" root="bi172" name="bi182"/>
+					<Item purpose="dataTip" root="bi173" name="bi183"/>
+					<Item purpose="dataTip" root="bi174" name="bi184"/>
+					<Item purpose="dataTip" root="bi170" name="bi185"/>
+					<Item purpose="color" root="bi172" name="bi186"/>
+					<Item purpose="longitude" root="bi175" name="bi187"/>
+					<Item purpose="latitude" root="bi176" name="bi188"/>
+					<Item purpose="geoItemRaw" root="bi169" name="bi189"/>
+				</SyntheticItems>
+				<RelationalDataItem includeAssociatedColumns="true" name="bi169" base="bi9"/>
+				<LookupDataItem property="longitude" lookup="bi9" name="bi175"/>
+				<LookupDataItem property="latitude" lookup="bi9" name="bi176"/>
+				<RelationalDataItem name="bi171" base="bi66"/>
+				<RelationalDataItem name="bi172" base="bi73"/>
+				<RelationalDataItem name="bi173" base="bi10"/>
+				<RelationalDataItem name="bi174" base="bi11"/>
+				<RelationalDataItem name="bi170" base="bi118"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds7" type="procedural" name="dd192">
+				<ProceduralQuery type="geoMap" scoreCodeNumber="26">
+					<Arguments>
+						<Argument purpose="geoType">
+							<StringValue>coordinate</StringValue>
+						</Argument>
+						<Argument purpose="geoItem">
+							<ReferenceValue>bi169</ReferenceValue>
+						</Argument>
+						<Argument purpose="longitude">
+							<ReferenceValue>bi175</ReferenceValue>
+						</Argument>
+						<Argument purpose="latitude">
+							<ReferenceValue>bi176</ReferenceValue>
+						</Argument>
+					</Arguments>
+					<SortItems>
+						<SortItem ref="bi172" sortDirection="ascending"/>
+					</SortItems>
+				</ProceduralQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="geoScatter" maxRowsBehavior="truncate" name="dd190" syntheticItems="si177"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<DataDefinition dataSource="ds194" type="mapprovider" name="dd195"/>
 	</DataDefinitions>
 	<DataSources>
 		<DataSource label="XMAS" type="relational" name="ds7">
@@ -158,6 +233,9 @@
 			</BusinessItemFolder>
 		</DataSource>
 		<DataSource label="OpenStreetMapProvider" type="mapprovider" name="ds36">
+			<OpenStreetMapProvider useSSL="true" osmType="SAS_HIGH_CONTRAST"/>
+		</DataSource>
+		<DataSource label="OpenStreetMapProvider" type="mapprovider" name="ds194">
 			<OpenStreetMapProvider useSSL="true" osmType="SAS_HIGH_CONTRAST"/>
 		</DataSource>
 	</DataSources>
@@ -251,7 +329,7 @@
 				<Column variable="bi117"/>
 			</Columns>
 		</Table>
-		<Image scaleType="scale" file="ve101.png" name="ve101" label="Image 1" selectionDisabled="true"/>
+		<Image scaleType="scale" file="/files/files/e2329ae4-4e15-429f-ad45-5423b299d25e" name="ve101" label="Image 1" selectionDisabled="true"/>
 		<VisualContainer containerType="layout" name="ve103" label="Layout Container 3" selectionDisabled="true">
 			<EditorProperties>
 				<Property key="visualType">LAYOUT_CONTAINER</Property>
@@ -332,6 +410,160 @@
 				<Column variable="bi146"/>
 			</Columns>
 		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve156" resultDefinitions="dd151" name="ve157" data="dd154" label="Key value - May your data be merry and bright. 1 (1)" applyDynamicBrushes="yes" sourceInteractionVariables="bi152">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+				<Property key="previousShowMeasureValue">true</Property>
+				<Property key="previousShowMeasureLabel">true</Property>
+				<Property key="previousShowCategoryValue">true</Property>
+				<Property key="previousShowCategoryLabel">true</Property>
+				<Property key="previousShowAggregation">false</Property>
+			</EditorProperties>
+<![CDATA[<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="numeric" type="numeric">
+                <DefaultValues>
+                    <Value>dd151.bi153</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" assignedType="character" type="character">
+                <DefaultValues>
+                    <Value>dd151.bi152</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd151.bi152</Value>
+                    <Value>dd151.bi153</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutDataPanel cellHeightMin="100px" cellWidthMin="100px" rowGutter="4px" columnGutter="6px" headerLabelDisplay="none" includeMissingClass="true" scroll="true" classVars="CATEGORY">
+        <LayoutPrototypeRegion>
+            <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYVALUE RESPONSELABEL" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+                <ResponseValueFormatOpts extractScale="false"/>
+                <CategoryValueAttrs color="16777215"/>
+                <ResponseLabelAttrs weight="normal" color="8057776"/>
+            </KeyValue>
+        </LayoutPrototypeRegion>
+    </LayoutDataPanel>
+</StatGraph>]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd151" name="ve156" data="dd154" applyDynamicBrushes="yes" sourceInteractionVariables="bi152">
+			<Columns>
+				<Column variable="bi153"/>
+				<Column variable="bi152"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="standard" name="ve159" label="Standard container 1 (1)" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Image scaleType="scale" file="ve161.png" name="ve161" label="Image 1 (1)" selectionDisabled="true"/>
+		<VisualContainer containerType="standard" name="ve163" label="Standard container 3 (1)" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Graph graphType="geo" graphSubType="geoScatter" supplementalVisuals="ve193" mapData="dd195" resultDefinitions="dd190" name="ve208" data="dd191" label="Geo coordinate - id 2" applyDynamicBrushes="yes" sourceInteractionVariables="bi189 bi180">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+				<Property key="derivedVisualType">true</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="cd196">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi186"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="cd198">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi186"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="cd200">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi186"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="cd202">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi186"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="cd204" nonVisual="false">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi186"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="cd206" nonVisual="false">
+					<ConditionParameters>
+						<ConditionParameter variable="bi1" parameter="bi179"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel" labelingLimit="500">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DataNameMap>
+            <Entry model="LayoutOverlayMap_1" data="dd190"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutOverlayMap name="LayoutOverlayMap_1" cycleAttrs="true" cycleColorResponses="true" dataLabelThinPolicy="nonoverlapping">
+        <MapLayer name="MapLayer_1" visible="false"/>
+        <ScatterPlot name="Scatter" dataTransparency="0.180000007" tipListPolicy="replace" compactLabelFormats="true" sizeMax="91px" sizeMin="24px" auxiliary="Role1 Role1" tip="Role2 Role3 Role4 Role5 Role6" x="dd190#bi187" y="dd190#bi188" colorResponse="dd190#bi186" sizeResponse="dd190#bi179" animationID="dd190#bi178">
+            <ProximityClusterOptions proximityCluster="auto" clusterDistance="150px"/>
+            <Roles>
+                <Role name="Role1" type="variable">dd190#bi178</Role>
+                <Role name="Role2" type="variable">dd190#bi181</Role>
+                <Role name="Role3" type="variable">dd190#bi182</Role>
+                <Role name="Role4" type="variable">dd190#bi183</Role>
+                <Role name="Role5" type="variable">dd190#bi184</Role>
+                <Role name="Role6" type="variable">dd190#bi185</Role>
+            </Roles>
+            <MarkerAttrs size="21px"/>
+        </ScatterPlot>
+    </LayoutOverlayMap>
+    <LayoutGlobalLegend allowCollapsed="false" visible="off">
+        <ContinuousLegend border="false" opaque="false" valueStyle="inflections" displayMissing="automatic" extractScale="true" title_type="KEYWORD" title="AUTO">
+            <GraphNames>
+                <Value>Scatter</Value>
+            </GraphNames>
+        </ContinuousLegend>
+        <SizeLegend border="false" opaque="false" extractScale="true" title_type="KEYWORD" title="AUTO">
+            <GraphNames>
+                <Value>Scatter</Value>
+            </GraphNames>
+        </SizeLegend>
+        <AutoLegend sortOrder="ascending">
+            <GraphNames>
+                <Value>Scatter</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyframesPerSecond="5" playDirectionForward="true" repeatEnabled="true" keyFrame="dd190#bi180"/>
+</StatGraph>]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd190" name="ve193" data="dd191" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi178"/>
+				<Column variable="bi179"/>
+				<Column variable="bi186"/>
+				<Column variable="bi180"/>
+				<Column variable="bi183"/>
+				<Column variable="bi184"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve221" label="Layout Container 4" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
 	</VisualElements>
 	<View>
 		<Header>
@@ -349,7 +581,7 @@
 				</ResponsiveLayout>
 			</MediaContainer>
 		</Header>
-		<Section name="vi6" label="Page 1">
+		<Section name="vi6" label="Horizontal">
 			<Header>
 				<MediaContainer target="mt2">
 					<ResponsiveLayout orientation="horizontal" overflow="fit">
@@ -517,6 +749,121 @@
 				</MediaContainer>
 			</Body>
 		</Section>
+		<Section name="vi212" label="Vertical">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve208" name="vi209">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve157" name="vi158">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="20%" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Container ref="ve221" name="vi220">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Container ref="ve159" name="vi160">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="fit">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+						</Container>
+						<Visual ref="ve161" name="vi162">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="10%" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Container ref="ve163" name="vi164">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="fit">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+						</Container>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
 	</View>
 	<Conditions>
 		<Condition scope="local" name="cd82">
@@ -567,10 +914,58 @@
 				<Expression>ge(${bi1},5)</Expression>
 			</If>
 		</Condition>
+		<Condition scope="local" name="cd196">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc197" class="If">
+				<Expression>eq(${bi1},2)</Expression>
+			</If>
+		</Condition>
+		<Condition scope="local" name="cd198">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc199" class="If">
+				<Expression>eq(${bi1},1)</Expression>
+			</If>
+		</Condition>
+		<Condition scope="local" name="cd200">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc201" class="If">
+				<Expression>eq(${bi1},3)</Expression>
+			</If>
+		</Condition>
+		<Condition scope="local" name="cd202">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc203" class="If">
+				<Expression>eq(${bi1},4)</Expression>
+			</If>
+		</Condition>
+		<Condition scope="local" name="cd204">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc205" class="If">
+				<Expression>eq(${bi1},5)</Expression>
+			</If>
+		</Condition>
+		<Condition scope="local" name="cd206">
+			<ConditionVariables>
+				<ConditionVariable variable="bi1" type="numeric"/>
+			</ConditionVariables>
+			<If name="cc207" class="If">
+				<Expression>ge(${bi1},5)</Expression>
+			</If>
+		</Condition>
 	</Conditions>
 	<MediaSchemes>
 		<MediaScheme name="ms1">
-			<BaseStylesheetResource file="basems1.css" theme="opal"/>
+			<BaseStylesheetResource file="basems1.css" theme="midnight2020"/>
 			<StylesheetFile file="ms1.css"/>
 		</MediaScheme>
 	</MediaSchemes>
@@ -602,13 +997,18 @@
 	</Conversions>
 	<Editors>
 		<Editor applicationName="VA">
-			<Revision editorVersion="2023.10" lastDate="2023-12-21T01:24:21.877Z"/>
+			<Revision editorVersion="2023.10" lastDate="2023-12-21T01:41:41.585Z"/>
 		</Editor>
 	</Editors>
 </History>
-	<SASReportState date="2023-12-20T04:15:27Z">
+	<SASReportState date="2023-12-21T01:40:31Z">
 		<VisualElements>
-			<GraphState element="ve15" dataAnimationKeyframeValue="1961">
+			<GraphState element="ve15" dataAnimationKeyframeValue="1971">
+				<RendererStates>
+					<LayoutOverlayMap/>
+				</RendererStates>
+			</GraphState>
+			<GraphState element="ve208" dataAnimationKeyframeValue="1950">
 				<RendererStates>
 					<LayoutOverlayMap/>
 				</RendererStates>
