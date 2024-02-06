@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadataSupplement>
+    <tables>
+        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_MOVEMENTS','en_US'" tableModifiedTimeStamp="2024-02-05T22:27:33.044Z">
+            <columns>
+                <column dataType="date" format="MONYY7" label="Date" xref="date"/>
+                <column dataType="double" format="BEST12." label="SACC ID" xref="sacc"/>
+                <column dataType="string" label="Country" xref="country"/>
+                <column dataType="string" label="Country ISO2" xref="country_iso2"/>
+                <column dataType="double" format="COMMA12." label="Arrivals" xref="arrivals"/>
+                <column dataType="double" format="COMMA12." label="Departures" xref="departures"/>
+            </columns>
+        </table>
+        <table dataLocale="en_US" dataSources="ds88" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_REASONS','en_US'" tableModifiedTimeStamp="2024-02-05T22:27:32.975Z">
+            <columns>
+                <column dataType="date" format="MONYY7" label="Date" xref="date"/>
+                <column dataType="double" format="BEST12." label="Duration: Under 1 week" xref="A85251163V"/>
+                <column dataType="double" format="BEST12." label="Duration: 1 and under 2 weeks" xref="A85251159C"/>
+                <column dataType="double" format="BEST12." label="Duration: 2 weeks and under 1 month" xref="A85251162T"/>
+                <column dataType="double" format="BEST12." label="Duration: 1 and under 2 months" xref="A85251160L"/>
+                <column dataType="double" format="BEST12." label="Duration: 2 and under 3 months" xref="A85251158A"/>
+                <column dataType="double" format="BEST12." label="Duration: 3 and under 6 months" xref="A85251161R"/>
+                <column dataType="double" format="BEST12." label="Duration: 6 and under 12 months" xref="A85251157X"/>
+                <column dataType="double" format="BEST12." label="Duration: Total (Duration of stay in days)" xref="A85251164W"/>
+                <column dataType="double" format="BEST12." label="Reason: Convention/conference" xref="A85247902K"/>
+                <column dataType="double" format="BEST12." label="Reason: Business" xref="A85247896A"/>
+                <column dataType="double" format="BEST12." label="Reason: Visiting friends/relatives" xref="A85247899J"/>
+                <column dataType="double" format="BEST12." label="Reason: Holiday" xref="A85247897C"/>
+                <column dataType="double" format="BEST12." label="Reason: Employment" xref="A85247900F"/>
+                <column dataType="double" format="BEST12." label="Reason: Education" xref="A85247898F"/>
+                <column dataType="double" format="BEST12." label="Reason: Other &amp; not stated" xref="A85247901J"/>
+                <column dataType="double" format="BEST12." label="Reason: Total (Reason for Journey)" xref="A85247903L"/>
+            </columns>
+        </table>
+    </tables>
+    <version>2</version>
+</metadataSupplement>
