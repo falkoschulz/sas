@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>SAS&reg; Visual Analytics SDK</title>
+    <script
+      async
+      src="https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js"
+    ></script>
+    <!--
+    Uncomment the stylesheet link below to access the fonts in the SAS Viya deployment.
+       Risk: This change requires a live connection to SAS Viya.
+       Reward: This change enables access to the fonts that were used to design the report.
+    <link rel='stylesheet' type='text/css' href='css/viyafonts.css' />
+    -->
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      sas-report,
+      sas-report-page,
+      sas-report-object {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body role="main">
+    <!-- Popular Names -->
+    <sas-report-page
+      packageUri="."
+      pageName="vi92"
+      style="width: 1600px; height: 3000px"
+    ></sas-report-page>
+  </body>
+  <script>
+    window.addEventListener("vaReportComponents.loaded", () => {
+      vaReportComponents.setLocale("en_US");
+      vaReportComponents.setFormatterLocale("en_US");
+    });
+  </script>
+</html>

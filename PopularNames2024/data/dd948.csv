@@ -1,0 +1,171 @@
+"
+
+   length _WARN_ $4;
+   label _WARN_ = 'Warnings';
+   label _CLUSTER_ID_ = 'Cluster ID';
+   label _DISTANCE_ = 'Distance to Centroid';
+
+   _i_ = 0;
+   _j_ = 0;
+   _k_ = 0;
+   _l_ = 0;
+   _dist_ = 0;
+   _minDist_ = 0;
+   _found_ = 0;
+   _unknown_ = 0;
+   _unknownflag_ = 0;
+   _intMindist2cntr_ = 0;
+   _missingflag4Int_ = 0;
+   _numberOfIntVars_ = 2;
+   _minDistInt_ = 0;
+   label _STANDARDIZED_DISTANCE_ = 'Standardized Distance to Centroid';
+
+   drop _i_;
+   drop _j_;
+   drop _k_;
+   drop _l_;
+   drop _dist_;
+   drop _minDist_;
+   drop _minDistInt_;
+   drop _unknown_;
+   drop _unknownflag_;
+   drop _found_;
+   drop _intMindist2cntr_;
+   drop _missingflag4Int_;
+   drop _numberOfIntVars_;
+   drop _minDistInt_;
+
+   array _intVals_1053{2} _temporary_;
+   array _intStdVals_1053{2} _temporary_;
+   array _intVars_1053[2] _temporary_;
+   _intVars_1053[1] =
+   year;
+   _intVars_1053[2] =
+   count;
+   array _cntrcoordsInt_1053{5,2} _temporary_ (
+   1958.8151545364
+   3700.7072781655
+   1931.2648586525
+   122.39381772598
+   1962.6630654589
+   1263.4573256878
+   1969.3436267199
+   150.74096747813
+   2003.9770897711
+   114.89315776703
+   );
+   array _stdcntrcoordsInt_1053 {5,2} _temporary_ (
+   -0.340123732163
+    6.721314336961
+     -1.2507186175
+   -0.247295479029
+   -0.212942230374
+    1.974876069149
+    0.007864288043
+   -0.192090637921
+    1.152572658829
+   -0.261902688038
+   );
+   array _stdscaleInt_1053 {2} _temporary_ (
+   30.255271940923
+   513.49028786614
+   );
+   array _stdcenterInt_1053 {2} _temporary_ (
+   1969.1056905465
+   249.37764444057
+   );
+
+   *************** check missing interval value ******************;
+   _missingflag4Int_ = 0;
+   do _i_ = 1 to _numberOfIntVars_ until(_missingflag4Int_);
+      if missing( _intVars_1053[_i_] ) then
+         _missingflag4Int_ = 1;
+   end;
+
+   if (_missingflag4Int_ = 1) then
+      substr(_WARN_, 1, 1) = 'M';
+   ********** prepare interval variable values *********;
+   do _i_ = 1 to _numberOfIntVars_;
+      if missing (_intVars_1053[_i_] ) then do;
+         _intVals_1053[_i_] = .;
+         _intStdVals_1053[_i_] = .;
+      end; else do;
+         if missing (_stdscaleInt_1053[_i_] ) then do;
+            _intStdVals_1053[_i_] = ( _intVars_1053[_i_] -  _stdcenterInt_1053[_i_]);
+         end; else do;
+            _intStdVals_1053[_i_] = ( _intVars_1053[_i_] -  _stdcenterInt_1053[_i_])
+                  /  _stdscaleInt_1053[_i_];
+         end;
+         _intVals_1053[_i_] = _intVars_1053[_i_];
+      end;
+   end;
+   ****************** find the closest cluster ******************;
+   if _missingflag4Int_ > 0  then
+   do;
+      _CLUSTER_ID_ = .;
+      _DISTANCE_ = .;
+      _minDistInt_ = .;
+      _STANDARDIZED_DISTANCE_ = .;
+   end;
+   else
+   do;
+      _CLUSTER_ID_ = .;
+      _minDist_ = 8.988465674E307;
+      do _i_=1 to               5;
+         _intMindist2cntr_ = 0;
+         do _j_=1 to               2;
+            _dist_ = _intStdVals_1053{_j_} - _stdcntrcoordsInt_1053{_i_,_j_};
+            _dist_ = _dist_ ** 2;
+            _intMindist2cntr_ = _intMindist2cntr_ + _dist_;
+         end;
+         _intMindist2cntr_ = _intMindist2cntr_ **              0.5;
+         if( _minDist_  > _intMindist2cntr_) then do;
+            _CLUSTER_ID_ = _i_;
+            _minDist_ = _intMindist2cntr_;
+         end;
+         _STANDARDIZED_DISTANCE_ = _minDist_;
+      end;
+      _DISTANCE_ = 8.988465674E307;
+      _i_ = _CLUSTER_ID_;
+      _intMindist2cntr_ = 0;
+      do _j_=1 to               2;
+         _dist_ = _intVals_1053{_j_} - _cntrcoordsInt_1053{_i_,_j_};
+         _dist_ = _dist_ ** 2;
+         _intMindist2cntr_ = _intMindist2cntr_ + _dist_;
+      end;
+      _intMindist2cntr_ = _intMindist2cntr_ **              0.5;
+      _DISTANCE_ = _intMindist2cntr_;
+   end;
+
+if (MISSING('_CLUSTER_ID_'n))then _CLUSTER_ID_ = -1;","   /*------------------------------------------
+   Generated SAS Scoring Code
+     Date             : March 21, 2024, 02:05:43 AM
+     Locale           : en_US
+     Model Type       : Cluster
+     Interval variable: year(Year)
+     Interval variable: count(Count)
+     ------------------------------------------*/
+","   /*------------------------------------------*/
+   /*_VA_DROP*/ drop '_CLUSTER_ID_'n '_DISTANCE_'n '_WARN_'n '_STANDARDIZED_DISTANCE_'n;
+      '_CLUSTER_ID__1053'n='_CLUSTER_ID_'n;
+'_DISTANCE__1053'n='_DISTANCE_'n;
+'_WARN__1053'n='_WARN_'n;
+'_STANDARDIZED_DISTANCE__1053'n='_STANDARDIZED_DISTANCE_'n;
+   /*------------------------------------------*/
+","   /*------------------------------------------
+   Generated SAS Scoring Code
+     Date             : March 21, 2024, 02:05:43 AM
+     Locale           : en_US
+     Model Type       : Cluster
+     Interval variable: year(Year)
+     Interval variable: count(Count)
+     ------------------------------------------*/
+","   /*------------------------------------------*/
+   /*_VA_DROP*/ drop '_CLUSTER_ID_'n '_DISTANCE_'n '_WARN_'n '_STANDARDIZED_DISTANCE_'n;
+   /*_VA_DROP_NUMBERED*/ drop '_CLUSTER_ID__1053'n '_DISTANCE__1053'n '_WARN__1053'n '_STANDARDIZED_DISTANCE__1053'n;
+      '_CLUSTER_ID__1053'n='_CLUSTER_ID_'n;
+'_DISTANCE__1053'n='_DISTANCE_'n;
+'_WARN__1053'n='_WARN_'n;
+'_STANDARDIZED_DISTANCE__1053'n='_STANDARDIZED_DISTANCE_'n;
+   /*------------------------------------------*/
+"

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadataSupplement>
+    <tables>
+        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','CASUSER(Falko.Schulz@sas.com)','US_POPULAR_NAMES','en_US'" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns>
+                <column dataType="string" label="State (ISO2)" xref="state"/>
+                <column dataType="string" label="Gender" xref="gender"/>
+                <column dataType="double" format="BEST12." label="Year" xref="year"/>
+                <column dataType="string" label="Name" xref="name"/>
+                <column dataType="double" format="BEST12." label="Count" xref="count"/>
+                <column dataType="double" format="BEST12." label="Popularity Rank (State)" xref="poprankstate"/>
+                <column dataType="double" format="BEST12." label="Popularity Rank (Country)" xref="poprank"/>
+            </columns>
+        </table>
+        <table dataLocale="en_US" dataSources="ds254" resourceIdentifier="GeneratedResource-ge173" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns>
+                <column dataType="double" format="COMMA20." label="Cluster ID" xref="_CLUSTER_ID_"/>
+            </columns>
+        </table>
+        <table dataLocale="en_US" dataSources="ds741" resourceIdentifier="GeneratedResource-ge1340" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns/>
+        </table>
+        <table dataLocale="en_US" dataSources="ds717" resourceIdentifier="GeneratedResource-ge709" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns/>
+        </table>
+        <table dataLocale="en_US" dataSources="ds647" resourceIdentifier="GeneratedResource-ge636" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns/>
+        </table>
+        <table dataLocale="en_US" dataSources="ds1443" resourceIdentifier="GeneratedResource-ge1437" tableModifiedTimeStamp="2024-03-21T00:38:08.741Z">
+            <columns/>
+        </table>
+    </tables>
+    <version>2</version>
+</metadataSupplement>
