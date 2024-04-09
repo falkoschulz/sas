@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <metadataSupplement>
     <tables>
-        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_MOVEMENTS','en_US'" tableModifiedTimeStamp="2024-02-05T22:27:33.044Z">
+        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_MOVEMENTS','en_US'" tableModifiedTimeStamp="2024-03-10T10:02:36.640Z">
             <columns>
                 <column dataType="date" format="MONYY7" label="Date" xref="date"/>
                 <column dataType="double" format="BEST12." label="SACC ID" xref="sacc"/>
@@ -11,7 +11,7 @@
                 <column dataType="double" format="COMMA12." label="Departures" xref="departures"/>
             </columns>
         </table>
-        <table dataLocale="en_US" dataSources="ds88" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_REASONS','en_US'" tableModifiedTimeStamp="2024-02-05T22:27:32.975Z">
+        <table dataLocale="en_US" dataSources="ds88" resourceIdentifier="'cas-shared-default','GTPPub','AU_INTL_TRAVEL_REASONS','en_US'" tableModifiedTimeStamp="2024-03-10T10:00:09.168Z">
             <columns>
                 <column dataType="date" format="MONYY7" label="Date" xref="date"/>
                 <column dataType="double" format="BEST12." label="Duration: Under 1 week" xref="A85251163V"/>

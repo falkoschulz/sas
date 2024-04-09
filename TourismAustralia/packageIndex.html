@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <title>SAS&reg; Visual Analytics SDK</title>
     <script async src='https://cdn.developer.sas.com/packages/va-report-components/latest/dist/umd/va-report-components.js'></script>
     <!--
     Uncomment the stylesheet link below to access the fonts in the SAS Viya deployment.
@@ -134,7 +136,7 @@
         font-family: Inconsolata;
       }
       .code-green {
-        color: #26883e;
+        color: #227a37;
       }
       .code-blue {
         color: #001aff;
@@ -234,50 +236,76 @@
   </head>
   <body>
     <div class="side-panel">
-    <div>
+    <div role="navigation">
       <ul class="link-pad">
-      <li class="link" data-type="sas-report" data-element=".">Tourism on the rise - Australias international border crossings</li>
-    <ul>
-      <li class="link" data-type="sas-report-page" data-element="vi6">Page 1</li>
+      <li class="link" data-type="sas-report" data-element=".">Tourism on the rise - Australias international border crossings
       <ul>
-      <li class="link" data-type="sas-report-object" data-element="ve582">Precision container 1</li>
+      <li class="link" data-type="sas-report-page" data-element="vi6">Page 1
       <ul>
-      <li class="link" data-type="sas-report-object" data-element="ve574">Text 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve540">Key value - Arrivals 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve555">Key value - Arrivals (% diff) 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve130">Crosstab - Date 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve17">Geo region - Country ISO2 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve59">Time - Date 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve76">Bar - Date 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve584">Image 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve410">Time - Date 2</li>
-      <li class="link" data-type="sas-report-object" data-element="ve588">Text 2</li>
-      <li class="link" data-type="sas-report-object" data-element="ve612">Geo network - Country ISO2 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve682">Image 3</li>
-      <li class="link" data-type="sas-report-object" data-element="ve688">Image 3 (2)</li>
-      <li class="link" data-type="sas-report-object" data-element="ve686">Image 3 (1)</li>
-      <li class="link" data-type="sas-report-object" data-element="ve697">Standard container 1</li>
+      <li class="link" data-type="sas-report-object" data-element="ve582">Precision container 1
       <ul>
-      <li class="link" data-type="sas-report-object" data-element="ve691">Text 3</li>
-      <li class="link" data-type="sas-report-object" data-element="ve586">Image 2</li>
+      <li class="link" data-type="sas-report-object" data-element="ve574">Text 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve540">Key value - Arrivals 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve555">Key value - Arrivals (% diff) 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve130">Crosstab - Date 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve17">Geo region - Country ISO2 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve59">Time - Date 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve76">Bar - Date 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve584">Image 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve410">Time - Date 2
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve588">Text 2
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve612">Geo network - Country ISO2 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve682">Image 3
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve688">Image 3 (2)
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve686">Image 3 (1)
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve697">Standard container 1
+      <ul>
+      <li class="link" data-type="sas-report-object" data-element="ve691">Text 3
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve586">Image 2
+      </li>
       </ul>
-      <li class="link" data-type="sas-report-object" data-element="ve974">Box - Year 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve1271">Parallel Coordinates - Departures 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve1294">Key value - Arrivals 2</li>
-      <li class="link" data-type="sas-report-object" data-element="ve1310">Key value - Departures 1</li>
-      <li class="link" data-type="sas-report-object" data-element="ve1320">Key value - Arrivals 3</li>
-      <li class="link" data-type="sas-report-object" data-element="ve1333">Key value - Departures 2</li>
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve974">Box - Year 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve1271">Parallel Coordinates - Departures 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve1294">Key value - Arrivals 2
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve1310">Key value - Departures 1
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve1320">Key value - Arrivals 3
+      </li>
+      <li class="link" data-type="sas-report-object" data-element="ve1333">Key value - Departures 2
+      </li>
       </ul>
+      </li>
       </ul>
-    </ul>
+      </li>
+      </ul>
+      </li>
       </ul>
     </div>
-    <div>
+    <div role="navigation">
       <hr>
       <a id="side-panel-status">Status Report</a>
     </div>
     </div>
-    <div id="status" class="main-content">
+    <div id="status" class="main-content" role="main">
       <h1>Status Report</h1>
       <h3>Review the issues found that are impacting your report's performance. Visit SAS&reg;Visual Analytics to resolve</h3>
       <br>
@@ -286,10 +314,10 @@
       <div id="status-page" class="flex-container">
       </div>
     </div>
-    <div id="report-container" class="main-content">
+    <div id="report-container" class="main-content" role="main">
     <h1>Tourism on the rise - Australias international border crossings</h1>
     <h3>View exported content and code reference to customize your webpage. See the <a target='_blank' href='https://github.com/sassoftware/sas-viya-sdk-js/tree/main/sdk/va-report-components/examples'>examples</a> on GitHub</h3>
-    <h3>Exported from SAS&reg;Visual Analytics on February 6, 2024 at 05:55 AM UTC</h3>
+    <h3>Exported from SAS&reg;Visual Analytics on April 9, 2024 at 03:11 AM UTC</h3>
     <br>
     <hr>
     <h3 id="reportlabel"></h3>
@@ -336,11 +364,11 @@
     const reportStatus = null;
     const liItems = document.querySelectorAll("li[data-type]");
     if (liItems.length) {
-       setView(liItems[0].innerText, liItems[0].getAttribute("data-type"), liItems[0].getAttribute("data-element"));
+       setView(liItems[0].firstChild.textContent.replace(/\s+/g, ' ').trim(), liItems[0].getAttribute("data-type"), liItems[0].getAttribute("data-element"));
     }
     for (let i = 0; i < liItems.length; i++) {
        liItems[i].addEventListener("click", function (e) {
-           setView(e.target.innerText, e.target.dataset.type, e.target.dataset.element);
+           setView(e.target.firstChild.textContent.replace(/\s+/g, ' ').trim(), e.target.dataset.type, e.target.dataset.element);
        }, true)
     }
     const codeContent = document.getElementById('code-content');
