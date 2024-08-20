@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="grapher-min.js"></script>
+    <script type="text/javascript" src="d3.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font: 11pt AvenirNext;
+        }
+
+        #chart, canvas {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #dataTip {
+            position: absolute;
+        }
+
+        .tip {
+            color: #111;
+            width: 200px;
+            background-color: white;
+            border: 1px solid #ccc;
+            -moz-box-shadow: #555 2px 2px 8px;
+            -webkit-box-shadow: #555 2px 2px 8px;
+            -o-box-shadow: #555 2px 2px 8px;
+            box-shadow: #555 2px 2px 8px;
+            opacity: 0.9;
+            filter: alpha(opacity=90);
+            font-size: 10px;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            padding: 7px;
+        }
+
+        .tip-title {
+            font-size: 11px;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<div id="chart"></div>
+<div id="dataTip" class="tip"></div>
+<script>
+    var width = $(document).width(),
+        height = $(document).height();
+
+    /**
+     * Simple force-directed graph custom content for SAS Visual Analytics 8.2 or later.
+     *
+     * @class Fragment
+     * @author Falko.Schulz@sas.com
+     * @version 1.0
+     * @public
+     * @name force-directed graph
+     */
+    function renderD3(network, usePan) {
+
+        // We create a function that determines whether a click event falls on a node.
+        var getNodeIdAt = function (point) {
+            var node = -1,
+                x = point.x, y = point.y;
+            network.nodes.every(function (n, i) {
+                var inX = x <= n.x + n.r && x >= n.x - n.r,
+                    inY = y <= n.y + n.r && y >= n.y - n.r,
+                    found = inX && inY;
+                if (found) node = i;
+                return !found;
+            });
+            return node;
+        };
+
+        // Helper function for offsets.
+        function getOffset(e) {
+            if (e.offsetX) return {x: e.offsetX, y: e.offsetY};
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX - rect.left,
+                y = e.clientY - rect.top;
+            return {x: x, y: y};
+        };
+
+        // Create a grapher instance (width, height, options)
+        var grapher = new Grapher({
+            width: width,
+            height: height
+        });
+
+        // Give it the network data
+        grapher.data(network);
+
+        // Set the default node and link color
+        grapher.color('#00929F');
+
+        // Variable to keep track of the node we're dragging and the current offset
+        var dragging = null,
+            offset = null;
+        // onTick gets called on each tick of D3's force
+        var onTick = function () {
+            if (dragging && offset) {
+                // update the node's position here so it's sticky
+                dragging.node.x = offset.x;
+                dragging.node.y = offset.y;
+            }
+            grapher.update(); // update the grapher
+        };
+
+        // Setup D3's force layout
+        var force = d3.layout.force()
+            .nodes(network.nodes)
+            .links(network.links)
+            .size([width, height])
+            .on('tick', onTick)
+            .charge(-5000)
+            .gravity(0.005)
+            .linkStrength(0.2)
+            .linkDistance(100)
+            .friction(0.02)
+            .start();
+
+        // show tip on mouse over
+        var showDataTip = function (e) {
+            var eOffset = getOffset(e);
+            var point = grapher.getDataPosition(eOffset);
+            var nodeId = getNodeIdAt(point);
+            if (nodeId > -1 && network.nodes[nodeId]) {
+                var node = network.nodes[nodeId],
+                    dataTipHtml = "<b>ID</b>: " + node.id;
+
+                for (var i = 0; i < node.dataTip.length; i++) {
+                    dataTipHtml += "<br/><b>" + node.dataTip[i].label + "</b>: " + node.dataTip[i].value;
+                }
+
+                $("#dataTip").html(dataTipHtml);
+                $("#dataTip").show();
+                $("#dataTip").css({top: eOffset.y + 10, left: eOffset.x + 10});
+            } else {
+                $("#dataTip").hide();
+            }
+        };
+
+        if (usePan) {
+            // just allow pan - but no node pos changes
+            var startPoint;
+            grapher.on('mousedown', function (e) {
+                // Set the starting point
+                startPoint = getOffset(e);
+
+                grapher.on('mouseup', function (e) {
+                    // Stop listening to mouse events, and cleanup startPoint
+                    startPoint = undefined;
+//                    grapher.off('mousemove');
+                    grapher.off('mouseup');
+                });
+            });
+
+            // Start listening to other mouse events.
+            grapher.on('mousemove', function (e) {
+                // Adjust the translate based on the change in mouse location.
+                if (startPoint) {
+                    var translate = grapher.translate(),
+                        offset = getOffset(e);
+
+                    translate[0] += (offset.x - startPoint.x);
+                    translate[1] += (offset.y - startPoint.y);
+
+                    startPoint = offset;
+                    grapher.translate(translate);
+                }
+
+                showDataTip(e);
+            });
+        } else {
+            // allow node pos changes
+            // On mousedown, grab the node that was clicked.
+            grapher.on('mousedown', function (e) {
+                var eOffset = getOffset(e);
+                var point = grapher.getDataPosition(eOffset);
+                var nodeId = getNodeIdAt(point);
+                if (nodeId > -1) {
+                    dragging = {node: network.nodes[nodeId], id: nodeId};
+                    offset = point;
+                }
+                else dragging = offset = null;
+            });
+
+            // When the user moves the mouse, we update the node's position
+            grapher.on('mousemove', function (e) {
+                var eOffset = getOffset(e);
+                var point = grapher.getDataPosition(eOffset);
+                if (dragging) {
+                    offset = point;
+                    force.alpha(1); // restart the force graph
+                }
+            });
+
+            // Finally when the user lets go of the mouse, we stop dragging
+            grapher.on('mouseup', function (e) {
+                dragging = offset = null;
+            });
+
+        }
+
+
+        // Append the grapher's view onto the page
+        $("#chart").empty();
+        $("#chart").append(grapher.canvas);
+
+        var maxValueX = 0.1,
+            maxValueY = 1000;
+        function stretch() {
+            var width = window.innerWidth;
+            var height = window.innerHeight;
+            // compute the scale
+            var scale = [width / maxValueX, height / maxValueY];
+            grapher.scale(scale);
+        }
+        stretch();
+
+        // Render the graph using play. This will call render in a requestAnimationFrame loop.
+        grapher.play();
+        window.addEventListener('resize', stretch);
+
+        // Setup transforms with the mousewheel event
+        grapher.on('wheel', function (e) {
+            var offset = getOffset(e),
+                transform = grapher.transform(),
+                delta = e.deltaY / 5000,
+                fromCenterX = offset.x - width / 2;
+            fromCenterY = offset.y - height / 2;
+
+            transform.scale = transform.scale + delta;
+            transform.translate = [
+                transform.translate[0] + fromCenterX * delta,
+                transform.translate[1] + fromCenterY * delta,
+            ];
+
+            // Set the new transform
+            grapher.transform(transform);
+            // Render the graph
+            grapher.render();
+        });
+    }
+
+    /**
+     * Executed when a message is received from SAS VA (e.g. by interaction or filter)
+     * @param evt {Event}
+     */
+    function onMessage(evt) {
+        if (evt && evt.data && evt.data.data && evt.data.data.length > 0) {
+            var columnMeta = evt.data.columns,
+                rows = evt.data.data,
+                graphData = {
+                    "nodes": [],
+                    "links": []
+                };
+
+            var color = d3.scale.category20();
+            var getItemIndexByField = function (array, field, value) {
+                if (array && field) {
+                    var listLen = array.length;
+                    for (var i = 0; i < listLen; i++) {
+                        var itemValue = array[i][field];
+                        if (itemValue === value)
+                            return i;
+                    }
+                }
+                return -1;
+            };
+
+            var getNodeIndex = function (nodeId) {
+                var nodePos = getItemIndexByField(graphData.nodes, "id", nodeId);
+                if (nodePos === -1) {
+                    // new node
+                    graphData.nodes.push({
+                        id: nodeId,
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        r: 10,
+                        weight: 1
+                    });
+                    nodePos = graphData.nodes.length - 1;
+                }
+                return nodePos;
+            };
+
+            rows.forEach(function (columns) {
+                if (columns < 3) return;
+
+                // add nodes
+                var sourceIdx = getNodeIndex(columns[0]),
+                    targetIdx = getNodeIndex(columns[1]);
+
+                if (columns.length > 2) {
+                    [sourceIdx, targetIdx].forEach(function (nodeIdx) {
+                        var node = graphData.nodes[nodeIdx];
+                        node.color = color(columns[2]);
+
+                        // add others as data tips
+                        node.dataTip = [];
+                        for (var i = 2; i < columns.length; i++) {
+                            node.dataTip.push({
+                                label: columnMeta[i].label,
+                                value: columns[i]
+                            });
+                        }
+                    });
+                }
+
+                // add link
+                graphData.links.push({
+                    from: sourceIdx,
+                    to: targetIdx,
+                    source: graphData.nodes[sourceIdx],
+                    target: graphData.nodes[targetIdx],
+                    value: columns.length > 3 ? columns[3] : 1,
+                    color: "#EEEEEE"
+                });
+            });
+
+//            console.error(graphData);
+            renderD3(graphData, true);
+        } else {
+            // TODO: display a warning to assign required roles in VA
+        }
+
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false);
+    } else {
+        window.attachEvent("onmessage", onMessage);
+    }
+</script>
+
+</body>
+</html>

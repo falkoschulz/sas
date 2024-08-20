@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="3d-force-graph.min.js"></script>
+    <script src="qwest.min.js"></script>
+    <script src="papaparse.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="chart"></div>
+
+    <script>
+        function renderD3(graphData) {
+            const Graph = ForceGraph3D()
+            (document.getElementById("chart"));
+
+            Graph
+                // .cooldownTicks(300)
+                .forceEngine('ngraph') // default is D3 which seems slower
+                .graphData(graphData)
+                .nodeLabel('id')
+                .nodeAutoColorBy('group')
+                .linkDirectionalParticles("value")
+                .linkDirectionalParticleSpeed(d => d.value * 0.001)
+                .linkDirectionalArrowLength(3.5)
+                .linkDirectionalArrowRelPos(1)
+                .linkCurvature(0.25);
+        }
+
+        /**
+         * Executed when a message is received from SAS VA (e.g. by interaction or filter)
+         * @param evt {Event}
+         */
+        function onMessage(evt) {
+            if (evt && evt.data && evt.data.data && evt.data.data.length > 0) {
+                var rows = evt.data.data;
+                var graphData = {
+                    "nodes": [],
+                    "links": []
+                };
+
+                var findNodeById = function (nodeArr, nodeId) {
+                    var nodes = graphData.nodes.filter(function (node) {
+                        return node.id === nodeId
+                    });
+                    return nodes.length > 0 ? nodes[0] : null;
+                };
+
+                var getNonNullNode = function (nodeId) {
+                    var node = findNodeById(graphData, nodeId);
+                    if (node === null) {
+                        // new node
+                        graphData.nodes.push(node = {
+                            "id": nodeId,
+                            "group": 1
+                        });
+                    }
+                    return node;
+                };
+
+                rows.forEach(function (columns) {
+                    if (columns < 2) return;
+
+                    // add nodes
+                    var source = getNonNullNode(columns[0]),
+                        target = getNonNullNode(columns[1]);
+
+                    if (columns.length > 2) {
+                        source.group = columns[2];
+                    }
+
+                    // add link
+                    graphData.links.push({
+                        "source": source.id,
+                        "target": target.id,
+                        "value": columns.length > 3 ? columns[3] : 1
+                    });
+                });
+
+                // debugger;
+
+                renderD3(graphData);
+            } else {
+                // TODO: display a warning to assign required roles in VA
+            }
+
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener("message", onMessage, false);
+        } else {
+            window.attachEvent("onmessage", onMessage);
+        }
+    </script>
+</body>
+
+</html>

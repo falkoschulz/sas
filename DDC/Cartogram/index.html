@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAS Visual Analytics - Demers Cartogram</title>
+    <style>
+        svg {
+            padding-left: -200px;
+            /*background-color: rgb(236, 234, 241);*/
+            margin: 0 auto;
+            display: block;
+        }
+
+        svg > rect {
+            stroke-width: 1px;
+            stroke: rgb(183, 183, 183);
+            fill-opacity: 0.9;
+        }
+
+        div.tooltip {
+            position: absolute;
+            padding: 0.5rem;
+            margin-left: 1rem;
+            margin-top: 1rem;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+    </style>
+
+</head>
+<body>
+<div id="carte"></div>
+
+<script src="js/d3.min.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    var minValue = 0;
+    var maxValue = 0;
+    var minColorValue = 0;
+    var maxColorValue = 0;
+    var sampleData = {
+        data: {
+            resultName: "",
+            availableRowCount: 100,
+            columns: [
+                {name: "country"},
+                {name: "measure1"},
+                {name: "measure2"},
+            ],
+            data: [
+                {id: "row1", country: "United States of America", measure1: 1, measure2: 3},
+                {id: "row2", country: "Germany", measure1: 2, measure2: 2},
+                {id: "row3", country: "Australia", measure1: 3, measure2: 1}
+            ]
+        }
+    };
+
+    // for debugging only
+    // $(document).ready(function () {
+    //     onMessage(sampleData);
+    // });
+
+    // Function for define the color of the squares,
+    // in relation of his interval
+    function getColorFromValue(value) {
+        var range = maxColorValue - minColorValue;
+        if (value > (maxColorValue-range/4)) {
+            return "#B12535";
+        } else if (value > (maxColorValue-range/2)) {
+            return "#D76D43";
+        } else if (value > (minColorValue+range/4)) {
+            return "#EFC46E";
+        } else {
+            return "#ECECED";
+        }
+    }
+
+    // Retrieve data and begin processing
+    function onMessage(evt) {
+        if (evt && evt.data && evt.data.hasOwnProperty("data")) {
+            var data = evt.data;
+            var columnInfo = evt.data.columns;
+
+            self.resultName = evt.data.resultName;
+
+            // use sample data if necessary
+            if (!(data.availableRowCount >= 0 && data.columns.length >= 3)) {
+                data = sampleData.data.data;
+                columnInfo = sampleData.data.columns;
+
+                // notify the user
+                sendMessage({
+                    resultName: self.resultName,
+                    message: "No data items are assigned.\nPlease assign 3x columns representing the country, size and color to render the graph."
+                });
+            }
+
+            // var ratio = 1000000000; // MAILORDERDEMO
+
+            // This value is here for 2 things
+            // 1) Value for change of a few square position.
+            // 2) If the display position of the squares are great but it explode at the end,
+            // change the value by adding/removing 1 or more
+            // Let this default value to 114 to start.
+            var scale = 114;
+
+            var results = {
+                data: []
+            };
+            data.data.forEach(function (row) {
+                if (maxValue < row[1]) maxValue = row[1];
+                if (row[1] < minValue) minValue = row[1];
+
+                if (maxColorValue < row[2]) maxColorValue = row[2];
+                if (row[2] < minColorValue) minColorValue = row[2];
+
+                results.data.push({
+                    country: row[0],
+                    size: row[1],
+                    color: row[2]
+                })
+            });
+
+            // Ratio size of the squares in relation to the card size.
+            // Let this default value to 500 to start.
+            var ratio = 500;
+
+            // debugger;
+
+            // renderGraph(columnInfo, results.data);
+            allGraph(maxValue, ratio, scale, results);
+        }
+
+    }
+
+    if (window.addEventListener) {
+        // For standards-compliant web browsers
+        window.addEventListener("message", onMessage, false);
+    } else {
+        window.attachEvent("onmessage", onMessage);
+    }
+
+    // Update the object's selection when a row is checked/unchecked
+    function sendSelection(evt) {
+        var selectedRows = document.querySelectorAll(':checked');
+        var selection = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var row = selectedRows[i];
+            selection.push({row: row.id});
+        }
+
+        var message = {
+            resultName: self.resultName,
+            selections: selection
+        };
+
+        sendMessage(message);
+    }
+
+    function sendMessage(message) {
+        var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+
+        window.parent.postMessage(message, url);
+    }
+
+</script>
+</body>
+</html>

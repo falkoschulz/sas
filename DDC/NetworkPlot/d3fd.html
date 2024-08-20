@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script type="text/javascript" src="jquery-1.4.3.min.js"></script>
+    <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font: 11pt AvenirNext;
+        }
+
+        #chart, svg {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .axis path {
+            fill: none;
+            stroke: #999;
+            stroke-dasharray: 2 3;
+        }
+
+        .axis text {
+            font-size: 13px;
+            stroke: #222;
+        }
+
+        .links line {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+
+        .nodes circle {
+            stroke: #fff;
+            stroke-width: 1.5px;
+        }
+
+    </style>
+</head>
+<div id="chart"></div>
+<script>
+    /**
+     * Simple force-directed graph custom content for SAS Visual Analytics 8.2 or later.
+     *
+     * @class Fragment
+     * @author Falko.Schulz@sas.com
+     * @version 1.0
+     * @public
+     * @name force-directed graph
+     */
+    function renderD3(graphData) {
+        var width = $(document).width(),
+            height = $(document).height(),
+            start = 0,
+            end = 2.25;
+
+        // clean-up
+        d3.select("#chart").select("svg").remove();
+
+        // append svg
+        var svg = d3.select('#chart').append('svg');
+
+        var color = d3.scaleOrdinal(d3.schemeCategory20);
+
+        var ticked = function () {
+            link.attr("x1", function (d) {
+                return d.source.x;
+            }).attr("y1", function (d) {
+                return d.source.y;
+            }).attr("x2", function (d) {
+                return d.target.x;
+            }).attr("y2", function (d) {
+                return d.target.y;
+            });
+            node.attr("cx", function (d) {
+                return d.x;
+            }).attr("cy", function (d) {
+                return d.y;
+            });
+        };
+
+        var simulation = d3.forceSimulation()
+            .force("link", d3.forceLink().id(function (d) {
+                return d.id;
+            }))
+            .force("charge", d3.forceManyBody())
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        var dragstarted = function (d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        };
+
+        var dragged = function (d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        };
+
+        var dragended = function (d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        };
+
+        var link = svg.append("g")
+            .attr("class", "links")
+            .selectAll("line")
+            .data(graphData.links)
+            .enter().append("line")
+            .attr("stroke-width", function (d) {
+                return Math.sqrt(d.value);
+            });
+
+        var node = svg.append("g")
+            .attr("class", "nodes")
+            .selectAll("circle")
+            .data(graphData.nodes)
+            .enter().append("circle")
+            .attr("r", 5)
+            .attr("fill", function (d) {
+                return color(d.group);
+            })
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        node.append("title")
+            .text(function (d) {
+                return d.id;
+            });
+
+        simulation
+            .nodes(graphData.nodes)
+            .on("tick", ticked);
+
+        simulation.force("link")
+            .links(graphData.links);
+    }
+
+    /**
+     * Executed when a message is received from SAS VA (e.g. by interaction or filter)
+     * @param evt {Event}
+     */
+    function onMessage(evt) {
+        if (evt && evt.data && evt.data.data && evt.data.data.length > 0) {
+            var rows = evt.data.data;
+            var graphData = {
+                "nodes": [],
+                "links": []
+            };
+
+            var findNodeById = function (nodeArr, nodeId) {
+                var nodes = graphData.nodes.filter(function (node) {
+                    return node.id === nodeId
+                });
+                return nodes.length > 0 ? nodes[0] : null;
+            };
+
+            var getNonNullNode = function (nodeId) {
+                var node = findNodeById(graphData, nodeId);
+                if (node === null) {
+                    // new node
+                    graphData.nodes.push(node = {
+                        "id": nodeId,
+                        "group": 1
+                    });
+                }
+                return node;
+            };
+
+            rows.forEach(function (columns) {
+                if (columns < 2) return;
+
+                // add nodes
+                var source = getNonNullNode(columns[0]),
+                    target = getNonNullNode(columns[1]);
+
+                if (columns.length > 2) {
+                    source.group = columns[2];
+                }
+
+                // add link
+                graphData.links.push({
+                    "source": source.id,
+                    "target": target.id,
+                    "value": columns.length > 3 ? columns[3] : 1
+                });
+            });
+
+            renderD3(graphData);
+        } else {
+            // TODO: display a warning to assign required roles in VA
+        }
+
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false);
+    } else {
+        window.attachEvent("onmessage", onMessage);
+    }
+</script>
+
+</body>
+</html>

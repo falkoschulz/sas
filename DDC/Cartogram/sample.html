@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Demers Cartogram </title>
+	<style>svg {padding-left: -200px;background-color:rgb(198,221,241);margin:0 auto;display:block;}
+	</style>
+</head>
+<body>
+
+<h1 style="text-align: center; font-size: 1.5em; ">Mapping a resource</h1>
+<p style="text-align: center;">Roll your mouse over a square for more informations</p>
+
+<div id="carte"></div>
+
+<p style="text-align: center;font-size: 0.8em;">The data used are fictive</p>
+<script src="js/d3.min.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/script.js"></script>
+
+<script type="text/javascript">
+	// INIT
+	$(document).ready(function () {
+		
+		// The maximum value among your centroid
+		var maxValue = 16.5;
+
+		// Rato size of the squares in relation to the card size.
+		// Let this default value to 500 to start.
+		var ratio = 500;
+		
+		// This value is here for 2 things
+		// 1) Value for change of a few square position.
+		// 2) If the display position of the squares are great but it explode at the end,
+		// change the value by adding/removing 1 or more
+		// Let this default value to 114 to start.
+		var scale = 114; 
+
+		allGraph(maxValue, ratio, scale);
+	});
+
+	// Function for define the color of the squares,
+	// in relation of his interval
+	function getColorFromValue(value) {
+    	if (value > 10) {
+        	return "#B12535";
+	    } else if (value > 5) {
+	        return "#D76D43";
+	    } else if (value > 0) {
+	        return "#EFC46E";
+	    } else {
+	        return "#ECECED";
+	    }
+    }
+</script>
+
+</body>
+</html>

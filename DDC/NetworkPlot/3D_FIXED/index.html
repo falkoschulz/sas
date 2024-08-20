@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="graphosaurus.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <style>
+        #chart {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 0;
+            color: #0b1e2a;
+        }
+    </style>
+</head>
+
+<body>
+<div id="chart"></div>
+
+<script>
+    function renderD3(graphData) {
+        var graph = G.graph({
+            nodeImage: "disc.png",
+            nodeImageTransparent: true,
+            antialias: true,
+            bgColor: "white",
+            edgeWidth: 1.5,
+            nodeSize: 12,
+            hover: function (node) {
+                $("#label").text("Solar system: " + node.name);
+            },
+        });
+
+        for (var i = 0; i < graphData.nodes.length; i++) {
+            var graphDataNode = graphData.nodes[i];
+            var coords = [graphDataNode.x, graphDataNode.y, graphDataNode.z];
+
+            var node = G.node(coords, {
+                id: graphDataNode.id,
+                color: graphDataNode.color,
+            });
+            node.name = graphDataNode.id;
+            node.addTo(graph);
+        }
+
+        for (var i = 0; i < graphData.links.length; i++) {
+            G.edge([graphData.links[i].source, graphData.links[i].target], {
+                color: 0x0000aa,
+            }).addTo(graph);
+        }
+
+        graph.renderIn('chart');
+    }
+
+    /**
+     * Executed when a message is received from SAS VA (e.g. by interaction or filter)
+     * @param evt {Event}
+     */
+    function onMessage(evt) {
+        if (evt && evt.data && evt.data.data && evt.data.data.length > 0) {
+            var rows = evt.data.data;
+            var graphData = {
+                "nodes": [],
+                "links": []
+            };
+
+            var findNodeById = function (nodeArr, nodeId) {
+                var nodes = graphData.nodes.filter(function (node) {
+                    return node.id === nodeId
+                });
+                return nodes.length > 0 ? nodes[0] : null;
+            };
+
+            var getNonNullNode = function (nodeId, x, y, z, color) {
+                var node = findNodeById(graphData, nodeId);
+                if (node === null) {
+                    // new node
+                    graphData.nodes.push(node = {
+                        "id": nodeId,
+                        "group": 1,
+                        "x": x, "y": y, "z": z,
+                        "color": color
+                    });
+                }
+                return node;
+            };
+
+            rows.forEach(function (columns) {
+                if (columns < 2) return;
+
+                // add nodes
+                var source = getNonNullNode(columns[0], columns[1], columns[2], columns[3], columns[4]),
+                    target = getNonNullNode(columns[5], columns[6], columns[7], columns[8], columns[9]);
+
+                if (columns.length > 2) {
+                    source.group = columns[2];
+                }
+
+                // add link
+                graphData.links.push({
+                    "source": source.id,
+                    "target": target.id,
+                    "value": columns.length > 10 ? columns[10] : 1
+                });
+            });
+
+            // debugger;
+
+            renderD3(graphData);
+        } else {
+            // TODO: display a warning to assign required roles in VA
+        }
+
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false);
+    } else {
+        window.attachEvent("onmessage", onMessage);
+    }
+</script>
+</body>
+
+</html>

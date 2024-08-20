@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!--[if IE]>
+    <script language="javascript" type="text/javascript" src="excanvas.js"></script><![endif]-->
+
+    <!-- JIT Library File -->
+    <script language="javascript" type="text/javascript" src="jit.js"></script>
+
+    <style>
+        text {
+            font: 11pt AvenirNext;
+        }
+
+        svg {
+            display: block;
+        }
+
+        html, body, #chart_div, svg {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden
+        }
+
+        span.close {
+            color: #FF5555;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 3px;
+        }
+
+        span.name {
+            cursor: pointer;
+        }
+
+        .tip {
+            color: #111;
+            width: 139px;
+            background-color: white;
+            border: 1px solid #ccc;
+            -moz-box-shadow: #555 2px 2px 8px;
+            -webkit-box-shadow: #555 2px 2px 8px;
+            -o-box-shadow: #555 2px 2px 8px;
+            box-shadow: #555 2px 2px 8px;
+            opacity: 0.9;
+            filter: alpha(opacity=90);
+            font-size: 10px;
+            font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+            padding: 7px;
+        }
+
+        .tip-title {
+            font-size: 11px;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="chart_div"></div>
+
+<script>
+    "use strict";
+
+    /**
+     * Executed on message retrieval
+     * @param evt
+     */
+    function onMessage(evt) {
+        if (evt && evt.data && evt.data.hasOwnProperty("data"))
+            updateData(evt.data);
+    }
+
+    /**
+     * Listen for the message events
+     */
+    if (window.addEventListener) {
+        // For standards-compliant web browsers
+        window.addEventListener("message", onMessage, false);
+    }
+    else {
+        window.attachEvent("onmessage", onMessage);
+    }
+
+    /**
+     * Create the FD plot
+     * @type {$jit.ForceDirected}
+     */
+    var fd = new $jit.ForceDirected({
+        //id of the visualization container
+        injectInto: 'chart_div',
+        //Enable zooming and panning
+        //by scrolling and DnD
+        Navigation: {
+            enable: true,
+            type: "Native",
+            panning: 'avoid nodes',
+            zooming: 10 //zoom speed. higher is more sensible
+        },
+        // Change node and edge styles such as
+        // color and width.
+        // These properties are also set per node
+        // with dollar prefixed data-properties in the
+        // JSON structure.
+        Node: {
+            overridable: true,
+            dim: 5,
+            type: "circle",
+            color: "#00929F",
+        },
+        Edge: {
+            overridable: true,
+            color: '#909291',
+            lineWidth: 0.4
+        },
+        //Native canvas text styling
+        Label: {
+            type: "HTML",
+            size: 10,
+            style: 'bold'
+        },
+        //Add Tips
+        Tips: {
+            enable: true,
+            onShow: function (tip, node) {
+                //count connections
+                var count = 0;
+                node.eachAdjacency(function () {
+                    count++;
+                });
+                //display node info in tooltip
+                tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>"
+                    + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>";
+            }
+        },
+        // Add node events
+        Events: {
+            enable: true,
+            type: 'Native',
+            //Change cursor style when hovering a node
+            onMouseEnter: function () {
+                fd.canvas.getElement().style.cursor = 'move';
+            },
+            onMouseLeave: function () {
+                fd.canvas.getElement().style.cursor = '';
+            },
+            //Update node positions when dragged
+            onDragMove: function (node, eventInfo, e) {
+                var pos = eventInfo.getPos();
+                node.pos.setc(pos.x, pos.y);
+                fd.plot();
+            },
+            //Implement the same handler for touchscreens
+            onTouchMove: function (node, eventInfo, e) {
+                $jit.util.event.stop(e); //stop default touchmove event
+                this.onDragMove(node, eventInfo, e);
+            },
+            //Add also a click handler to nodes
+            onClick: function (node) {
+                if (!node) return;
+
+                // Build the right column relations list.
+                // This is done by traversing the clicked node connections.
+                var html = "<h4>" + node.name + "</h4><b> connections:</b><ul><li>",
+                    list = [];
+                node.eachAdjacency(function (adj) {
+                    list.push(adj.nodeTo.name);
+                });
+                //append connections information
+//                $jit.id('inner-details').innerHTML = html + list.join("</li><li>") + "</li></ul>";
+            }
+        },
+        //Number of iterations for the FD algorithm
+        iterations: 200,
+        //Edge length
+        levelDistance: 130,
+        // Add text to the labels. This method is only triggered
+        // on label creation and only for DOM labels (not native canvas ones).
+        onCreateLabel: function (domElement, node) {
+            if (domElement) {
+                domElement.innerHTML = node.name;
+                var style = domElement.style;
+                style.fontSize = "0.8em";
+                style.color = "#ddd";
+            }
+        },
+        // Change node styles when DOM labels are placed
+        // or moved.
+        onPlaceLabel: function (domElement, node) {
+            var style = domElement.style;
+            var left = parseInt(style.left);
+            var top = parseInt(style.top);
+            var w = domElement.offsetWidth;
+            style.left = (left - w / 2) + 'px';
+            style.top = (top + 10) + 'px';
+            style.display = '';
+        }
+    });
+
+    function findNodeById(nodeArr, nodeId) {
+        var nodes = nodeArr.filter(function (node) {
+            return node.id === nodeId
+        });
+        return nodes.length > 0 ? nodes[0] : null;
+    }
+
+    // http://192.168.0.101/custom/InfoVis/va82_custom_content_infovis.html
+    function updateData(chartData) {
+//        debugger;
+
+        var json = [];
+        console.error(json);
+        if (chartData && chartData.data.length > 0) {
+            var getNonNullNode = function (nodeId) {
+                var node = findNodeById(json, nodeId);
+                if (node === null) {
+                    // new node
+                    json.push(node = {
+                        "adjacencies": [],
+                        "data": {},
+                        "id": nodeId,
+                        "name": nodeId
+                    });
+                }
+                return node;
+            };
+            chartData.data.forEach(function (edge) {
+                // add source
+                var source = getNonNullNode(edge[0]),
+                    target = getNonNullNode(edge[1]);
+
+                // add link if not existing
+                if (findNodeById(source.adjacencies, target.id) === null)
+                    source.adjacencies.push({
+                        "nodeFrom": source.id,
+                        "nodeTo": target.id,
+                        "data": {}
+                    });
+            })
+        }
+
+        console.error(json);
+
+        // load JSON data.
+        fd.loadJSON(json);
+
+        // compute positions incrementally and plot.
+        fd.computeIncremental({
+            iter: 20,
+            property: ['end', 'start', 'current'],
+            onStep: function (perc) {
+                console.debug("loading " + perc + "%");
+            },
+            onComplete: function () {
+                console.debug("done");
+                fd.plot();
+            }
+        });
+
+        // compute positions incrementally and animate.
+//        fd.computeIncremental({
+//            iter: 40,
+//            property: 'end',
+//            onStep: function (perc) {
+//                console.debug(perc + '% loaded...');
+//            },
+//            onComplete: function () {
+//                console.debug('done');
+//                fd.animate({
+//                    modes: ['linear'],
+//                    transition: $jit.Trans.Elastic.easeOut,
+//                    duration: 2500
+//                });
+//            }
+//        });
+    }
+
+</script>
+
+</body>
+</html>
