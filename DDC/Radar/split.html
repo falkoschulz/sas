@@ -211,30 +211,8 @@ limitations under the License.
             unfocus: 0.2,
           },
         }; // Various opacity values used during rendering
-        const FILL = {
-          Hybrid: "#21b9b7",
-          Sedan: "#4141e0",
-          Sports: "#7db71a",
-          SUV: "#8e2f8a",
-          Truck: "#d38506",
-          Wagon: "#0abf85",
-          "High-income": "#DC5B0D",
-          "Upper-middle-income": "#646363",
-          "Lower-middle-income": "#929292",
-          "Low-income": "#B0B7C2",
-        }; // Fill colors keyed to labels
-        const STROKE = {
-          Hybrid: "#1d9992",
-          Sedan: "#2222bc",
-          Sports: "#6a9617",
-          SUV: "#6d256d",
-          Truck: "#ba7006",
-          Wagon: "#0a9e69",
-          "High-income": "#DC5B0D",
-          "Upper-middle-income": "#646363",
-          "Lower-middle-income": "#929292",
-          "Low-income": "#B0B7C2",
-        }; // Stroke colors keyed to labels
+        const FILL = {}; // Fill colors keyed to labels
+        const STROKE = {}; // Stroke colors keyed to labels
 
         // Dynamic data variables
         let VA_MESSAGE; // Data message to be received from VA
@@ -425,21 +403,28 @@ limitations under the License.
             DATA.push(datum);
           }
 
+          // Get unique categories
+          const uniqueCategories = [
+            ...new Set(DATA.map((item) => item.category)),
+          ];
+          const colorCount = uniqueCategories.length;
+
           // populate the fill colors
           const colorPalette = chroma
             .scale(["#fafa6e", "#2A4858"])
             .mode("lch")
-            .colors(20);
+            .colors(colorCount);
 
           // Shuffle the color palette to get random order
-          const shuffledPalette = d3.shuffle(colorPalette);
+          // const shuffledPalette = d3.shuffle(colorPalette);
 
           // Iterate over the DATA array
           DATA.forEach((item, index) => {
             // Assign a color to each unique category
             if (!FILL[item.category]) {
-              FILL[item.category] =
-                shuffledPalette[index % shuffledPalette.length];
+              const color = colorPalette[index % colorPalette.length];
+              FILL[item.category] = color;
+              STROKE[item.category] = chroma(color).darken(0.5).hex();
             }
           });
 
