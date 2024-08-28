@@ -340,12 +340,6 @@ limitations under the License.
             return;
           }
 
-          // remove any special chars
-          DATA.forEach((item, index) => {
-            item.categoryLabel = item.category;
-            item.category = removeSpecialCharacters(d.category);
-          });
-
           // Determine whether or not radar should be split based on selection
           SPLIT =
             (VA_MESSAGE.data[0][4] == "Split" && VA_MESSAGE.data[0][5] == 1) ||
@@ -391,7 +385,10 @@ limitations under the License.
           for (let i = 0; i < VA_MESSAGE.data.length / numMeasures; i++) {
             // Iterate over each category
             datum = {
-              category: VA_MESSAGE.data[i * numMeasures][0],
+              categoryLabel: VA_MESSAGE.data[i * numMeasures][0],
+              category: removeSpecialCharacters(
+                VA_MESSAGE.data[i * numMeasures][0]
+              ),
               metrics: [],
             };
 
