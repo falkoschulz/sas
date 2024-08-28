@@ -425,6 +425,24 @@ limitations under the License.
             DATA.push(datum);
           }
 
+          // populate the fill colors
+          const colorPalette = chroma
+            .scale(["#fafa6e", "#2A4858"])
+            .mode("lch")
+            .colors(20);
+
+          // Shuffle the color palette to get random order
+          const shuffledPalette = d3.shuffle(colorPalette);
+
+          // Iterate over the DATA array
+          DATA.forEach((item, index) => {
+            // Assign a color to each unique category
+            if (!FILL[item.category]) {
+              FILL[item.category] =
+                shuffledPalette[index % shuffledPalette.length];
+            }
+          });
+
           // Initialize chart if first draw, otherwise process data and update elements accordingly
           if (d3.select("#" + SVG_ID).empty()) {
             drawElements();
