@@ -514,7 +514,7 @@ limitations under the License.
           // Create legend groups
           LEGEND_GROUPS = G_LEGEND.selectAll(".g-legend-entry")
             .data(DATA, function (d) {
-              return d.categoryLabel;
+              return d.category;
             })
             .enter()
             .append("g")
@@ -528,7 +528,7 @@ limitations under the License.
 
           G_LEGEND.selectAll(".g-legend-entry")
             .data(DATA, function (d) {
-              return d.categoryLabel;
+              return d.category;
             })
             .attr("transform", function (d, i) {
               return (
@@ -936,7 +936,7 @@ limitations under the License.
             .append("text")
             .classed("legend-text", true)
             .text(function (d) {
-              return d.category;
+              return d.categoryLabel;
             })
             .attr("x", LEG_RECT_WIDTH + LEG_RECT_PAD)
             .style("opacity", 0)
