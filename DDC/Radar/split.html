@@ -115,6 +115,10 @@ limitations under the License.
     <script>
       "use strict";
 
+      function removeSpecialCharacters(str) {
+        return str.replace(/[^a-zA-Z0-9]/g, "");
+      }
+
       document.addEventListener("DOMContentLoaded", function () {
         /******************************************************* Declare variables *******************************************************/
 
@@ -336,6 +340,12 @@ limitations under the License.
             return;
           }
 
+          // remove any special chars
+          DATA.forEach((item, index) => {
+            item.categoryLabel = item.category;
+            item.category = removeSpecialCharacters(d.category);
+          });
+
           // Determine whether or not radar should be split based on selection
           SPLIT =
             (VA_MESSAGE.data[0][4] == "Split" && VA_MESSAGE.data[0][5] == 1) ||
@@ -414,9 +424,6 @@ limitations under the License.
             .scale(["#fafa6e", "#2A4858"])
             .mode("lch")
             .colors(colorCount);
-
-          // Shuffle the color palette to get random order
-          // const shuffledPalette = d3.shuffle(colorPalette);
 
           // Iterate over the DATA array
           DATA.forEach((item, index) => {
@@ -549,7 +556,7 @@ limitations under the License.
           LEGEND_GROUPS.append("text")
             .classed("legend-text", true)
             .text(function (d) {
-              return d.category;
+              return d.categoryLabel;
             })
             .attr("x", LEG_RECT_WIDTH + LEG_RECT_PAD);
 
