@@ -363,19 +363,25 @@ limitations under the License.
             metrics: {},
           };
 
+          let totalMax = Number.MIN_VALUE;
           for (let i = 0; i < numMeasures; i++) {
+            const maximum = d3.max(VA_MESSAGE.data, function (d) {
+              if (d[1] == nestedData[i].key) {
+                return d[2];
+              } else {
+                return Number.MIN_VALUE;
+              }
+            });
             METADATA.metrics[nestedData[i].key] = {
               metric: nestedData[i].key,
               angle: i * DELTA_ANGLE,
               format: translateFormat(VA_MESSAGE.data[i][3]),
-              maximum: d3.max(VA_MESSAGE.data, function (d) {
-                if (d[1] == nestedData[i].key) {
-                  return d[2];
-                } else {
-                  return Number.MIN_VALUE;
-                }
-              }),
+              maximum,
             };
+
+            if (totalMax < maximum) {
+              totalMax = maximum;
+            }
           }
 
           // Restructure data from 2d array to array of objects
@@ -399,9 +405,11 @@ limitations under the License.
                 metric: VA_MESSAGE.data[i * numMeasures + j][1],
                 measure: VA_MESSAGE.data[i * numMeasures + j][2],
                 scaled_measure:
-                  VA_MESSAGE.data[i * numMeasures + j][2] /
-                  METADATA.metrics[VA_MESSAGE.data[i * numMeasures + j][1]]
-                    .maximum,
+                  VA_MESSAGE.data[i * numMeasures + j][2] / totalMax,
+                // scaled_measure:
+                //   VA_MESSAGE.data[i * numMeasures + j][2] /
+                //   METADATA.metrics[VA_MESSAGE.data[i * numMeasures + j][1]]
+                //     .maximum,
               };
 
               datum.metrics.push(metric);
