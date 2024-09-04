@@ -398,10 +398,7 @@ limitations under the License.
                 category: datum.category,
                 metric: VA_MESSAGE.data[i * numMeasures + j][1],
                 measure: VA_MESSAGE.data[i * numMeasures + j][2],
-                scaled_measure:
-                  VA_MESSAGE.data[i * numMeasures + j][2] /
-                  METADATA.metrics[VA_MESSAGE.data[i * numMeasures + j][1]]
-                    .maximum,
+                scaled_measure: VA_MESSAGE.data[i * numMeasures + j][2],
               };
 
               datum.metrics.push(metric);
