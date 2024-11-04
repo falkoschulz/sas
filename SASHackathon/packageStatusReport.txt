@@ -1,0 +1,3 @@
+Text topics - Business Case 1
+  Interactivity for this object is limited for the following reasons:
+    * Actions for composite objects are not supported.

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<metadataSupplement>
+    <tables>
+        <table dataLocale="en_US" dataSources="ds7" resourceIdentifier="'cas-shared-default','DataVizGallery','HACKATHON','en_US'" tableModifiedTimeStamp="2024-11-03T21:05:41.697Z">
+            <columns>
+                <column dataType="string" label="Mentor" xref="mentor"/>
+                <column dataType="string" label="Team" xref="team_name"/>
+                <column dataType="string" label="SAS Usage" xref="sas_use"/>
+                <column dataType="string" label="Approved Status" xref="approved_status"/>
+                <column dataType="string" label="Hackathon Track" xref="track"/>
+                <column dataType="string" label="Hackathon Team Role" xref="hackathon_team_role"/>
+                <column dataType="datetime" format="DATETIME19" label="Created" xref="created"/>
+                <column dataType="string" label="Company" xref="company"/>
+                <column dataType="string" label="Country" xref="country"/>
+                <column dataType="double" format="BEST12." label="Contact Identifier" xref="id"/>
+                <column dataType="string" label="First Name" xref="first_name"/>
+                <column dataType="string" label="Last Name" xref="last_name"/>
+                <column dataType="string" label="Customer" xref="customer"/>
+                <column dataType="string" label="Business Case Identifier" xref="use_case_id"/>
+                <column dataType="string" label="Business Case" xref="use_case"/>
+                <column dataType="string" label="Contact Preference" xref="contact_preference"/>
+                <column dataType="string" label="Email" xref="email"/>
+                <column dataType="string" label="Hackathon Status" xref="status"/>
+                <column dataType="string" label="Job Title" xref="job_title"/>
+            </columns>
+        </table>
+    </tables>
+    <version>2</version>
+</metadataSupplement>
