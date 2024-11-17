@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="d3-milestones.css" />
+    <script src="d3-milestones.min.js"></script>
+    <script type="text/javascript" src="messagingUtil.js"></script>
+    <script type="text/javascript" src="contentUtil.js"></script>
+    <script type="text/javascript" src="d3.js"></script>
+    <style>
+      #timeline {
+        width: 100%;
+        height: 98%;
+      }
+
+      .milestones__group {
+        font-size: 12px;
+      }
+
+      body {
+        overflow: hidden;
+      }
+
+      #hover {
+        position: absolute;
+        width: 250px;
+        height: 100px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: rgba(195, 193, 190, 0.748);
+        visibility: hidden;
+        padding: 5px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="timeline"></div>
+    <div id="hover"></div>
+
+    <script>
+      "use strict";
+
+      const sampleData = [
+        {
+          date: 789,
+          title: "Vikings begin attacks on England.",
+          desc: "England",
+        },
+        {
+          date: 840,
+          title: "Vikings found Dublin in Ireland.",
+          desc: "Ireland",
+        },
+        {
+          date: 1050,
+          title: "The city of Oslo is founded in Norway.",
+          desc: "Norway",
+        },
+        { date: 1066, title: "Battle of Hastings.", desc: "Hastings" },
+      ];
+
+      const timelineGraph = milestones("#timeline")
+        .mapping({
+          timestamp: "date",
+          text: "title",
+        })
+        .parseTime("%Y")
+        .aggregateBy("year")
+        .optimize(true)
+        // .autoResize(true)
+        .orientation("vertical")
+        .onEventClick((d) => {
+          console.log("click", d);
+          alert(`${d.text} | ${d.timestamp} | ${JSON.stringify(d.attributes)}`);
+        })
+        .onEventMouseOver((d) => {
+          const hoverDiv = document.getElementById("hover");
+          hoverDiv.innerHTML = d.srcElement.__data__.attributes.desc;
+          hoverDiv.style.left = d.clientX;
+          hoverDiv.style.top = d.clientY;
+          hoverDiv.style.visibility = "visible";
+        })
+        .onEventMouseLeave((d) => {
+          const hoverDiv = document.getElementById("hover");
+          hoverDiv.style.visibility = "hidden";
+        })
+        .render(
+          sampleData.map((item) => {
+            return {
+              ...item,
+              titleStyle: { color: "#FF0000" },
+            };
+          })
+        );
+
+      let _resultData = null;
+      let _resultName = null;
+      let _selections = null;
+      let _data = null;
+
+      function onDataReceived(messageFromVA) {
+        _resultData = messageFromVA;
+        _resultName = messageFromVA.resultName;
+        _selections = va.contentUtil.initializeSelections(messageFromVA);
+
+        if (
+          !va.contentUtil.validateRoles(
+            messageFromVA,
+            ["date", "string", "string", "string"],
+            null
+          )
+        ) {
+          va.messagingUtil.postInstructionalMessage(
+            _resultName,
+            "D3 Timeline expects columns to be assigned in this order:\n" +
+              " 1. Date (date)\n" +
+              " 2. Text (string)" +
+              " 3. Hover Text (string)" +
+              " 4. Date color (hex code string)"
+          );
+          return;
+        }
+
+        _data = messageFromVA.data;
+
+        timelineGraph.render(
+          _data.map((cols) => {
+            return {
+              date: cols[0],
+              title: cols[1],
+              desc: cols[2],
+              titleStyle: { color: cols[3], "font-size": "21px" },
+              textStyle: { "font-weight": "bold" },
+            };
+          })
+        );
+      }
+
+      va.messagingUtil.setOnDataReceivedCallback(onDataReceived);
+    </script>
+  </body>
+</html>
